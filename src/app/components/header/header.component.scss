@@ -1,0 +1,77 @@
+@import "../../../scss/variables";
+
+.navbar-brand {
+    height: auto;
+    padding: 15px;
+    float: left;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar {
+    padding: 20px 0;
+    &__background {
+        background-color: #f6fbf9;
+    }
+    &__wrapper {
+        justify-content: space-between;
+    }
+    &__logo {
+        height: 40px;
+        object-fit: cover;
+    }
+    &__list {
+        width: 100%;
+        justify-content: flex-end;
+        align-items: center;
+        & > .nav-item > .nav-link {
+            color: #4b4b4b;
+            font-size: 15px;
+            padding: 25px 14px;
+            font-weight: 500;
+            &:hover {
+                color: $heading-color;
+            }
+        }
+    }
+    &__user {
+        a {
+            padding: 0 14px !important;
+            i.fa {
+                font-size: 2rem;
+            }
+            &> img {
+                height:44px;
+                width: 44px;
+                border-radius: 50%;
+            }
+        }
+    }
+    &__hr {
+        color: $text-white-color;
+        background-color: $heading-color;
+        transition: all 0.3s ease;
+        height: 70px;
+        border-radius: 50px;
+        &--link {
+            display: inline-block;
+            height: 100%;
+            background-color: inherit;
+            border-radius: 50px;
+            padding: 11px 14px !important;
+            p {
+                font-weight: 700;
+                color: $text-white-color;
+                text-align: center;
+                margin-bottom: 0;
+                &:last-child {
+                    font-weight: normal;
+                }
+            }
+        }
+        &:hover {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            opacity: 0.8;
+        }
+    }
+}

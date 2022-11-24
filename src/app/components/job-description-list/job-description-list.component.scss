@@ -1,0 +1,27 @@
+.banner{
+    height: 250px;
+    max-width: 1366px;
+    margin: 0 auto 40px;
+    background-image: url('https://fsoft-academy.edu.vn/public/uploads/files/Banner%20Tuyen%20dung%20website-01(1).jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title{
+    padding: 15px 10px;
+    margin-bottom: 60px;
+    background: #00b14f;
+    h2{
+        font-size: 24px;
+        margin-bottom: 0 !important;
+        color: #ffffff;
+    }
+}
+.prl-15{
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+}
+@media only screen and (max-width: 576px) {
+    .grid-custom{
+        width: 100%;
+    }
+}

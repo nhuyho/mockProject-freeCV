@@ -1,0 +1,66 @@
+@import '../../../scss/variables';
+
+.content__table {
+    padding: 0 20px;
+
+    p {
+        margin: 0;
+    }
+
+    &__title{
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        font-weight: 500;
+        width: 100px;
+    }
+
+    & .note {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 200px;
+    }
+
+    & .btn-edit {
+        border: none;
+        background-color: transparent;
+        color: blueviolet;
+    }
+
+    & .tag__pending {
+        background-color: khaki;
+        color: #000;
+    }
+
+    & .tag__pass {
+        color: $text-white-color;
+        background-color: $heading-color;
+    }
+
+    & .tag__failed {
+        color: $text-white-color;
+        background-color: red;
+    }
+
+    & .error {
+        color: #f44336;
+    }
+
+    & .icon__view {
+        margin-bottom: 12px;
+        margin-left: 15px;
+    }
+}
+
+:host ::ng-deep{
+    .p-calendar .p-inputtext {
+        width: 10em;
+    }
+
+    .p-calendar .p-datepicker {
+        width: 20em;
+    }
+
+    .p-paginator {
+        justify-content: flex-end;
+    }
+}

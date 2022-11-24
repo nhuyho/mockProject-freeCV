@@ -1,0 +1,88 @@
+{
+    "titleCv-placeholder": "Tiêu đề CV",
+    "titleCv-msgError":"'Tiêu đề CV' không được để trống",
+    "position-placeholder":"Vị trí ứng tuyển",
+    "profile": {
+        "title": "Thông tin liên hệ",
+        "name-placeholder": "Tên ứng viên",
+        "name-msgError": "'Tên ứng viên' không được để trống",
+        "gender-placeholder": "Giới tính",
+        "dob-placeholder": "Ngày , tháng , năm sinh",
+        "email-placeholder": "Địa chỉ email",
+        "email-msgError": "'Email' không được để trống",
+        "phone-placeholder": "Số điện thoại",
+        "phone-msgError": "'Số điện thoại' không được để trống",
+        "link-placeholder": "Website, Facebook, Blog,...",
+        "address-placeholder": "Địa chỉ hiện tại",
+        "address-msgError": "'Địa chỉ hiện tại' không được để trống"
+    },
+    "objective": {
+        "title": "Mục tiêu nghề nghiệp",
+        "content-placeholder": "Mục tiêu nghề nghiệp: ngắn hạn, dài hạn",
+        "content-msgError": "'Mục tiêu nghề nghiệp' không được để trống"
+    },
+    "workExperiences": {
+        "title": "Kinh nghiệm làm việc",
+        "company-placeholder": "Tên công ty",
+        "company-msgError": "'Tên công ty' không được để trống",
+        "position-placeholder": "Vị trí công việc",
+        "startDate-placeholder": "Bắt đầu",
+        "endDate-placeholder": "Kết thúc",
+        "summary-placeholder": "Mô tả chi tiết công việc, những gì đạt được trong quá trình làm việc"
+    },
+    "activities": {
+        "title": "Hoạt động",
+        "organization-placeholder": "Tên tổ chức",
+        "organization-msgError": "'Tên tổ chức' không được để trống",
+        "position-placeholder": "Vị trí tham gia",
+        "startDate-placeholder": "Bắt đầu",
+        "endDate-placeholder": "Kết thúc",
+        "summary-placeholder": "Mô tả chi tiết hoạt động đã tham gia"
+    },
+    "education": {
+        "title": "Học vấn",
+        "school-placeholder": "Tên trường đại học",
+        "school-msgError": "'Tên trường đại học' không được để trống",
+        "major-placeholder": "Ngành học / Môn học",
+        "startDate-placeholder": "Bắt đầu",
+        "endDate-placeholder": "Kết thúc",
+        "summary-placeholder": "Mô tả chi tiết"
+    },
+    "awards": {
+        "title": "Giải thưởng",
+        "date-placeholder": "Thời gian",
+        "summary-placeholder": "Tên giải thưởng",
+        "summary-msgError": "'Tên giải thưởng' không được để trống"
+    },
+    "skills": {
+        "title": "Kỹ năng",
+        "name-placeholder": "Tên kỹ năng",
+        "name-msgError": "'Tên kỹ năng' không được để trống",
+        "content-placeholder": "Mô tả từng kỹ năng",
+        "content-msgError": "'Mô tả kỹ năng' không được để trống"
+    },
+    "certifications": {
+        "title": "Chứng chỉ",
+        "date-placeholder": "Thời gian",
+        "summary-placeholder": "Tên chứng chỉ",
+        "summary-msgError": "'Tên chứng chỉ' không được để trống"
+    },
+    "interests": {
+        "title": "Sở thích",
+        "content-placeholder": "Viết ngắn gọn về sở thích cá nhân",
+        "content-msgError": "'Mô tả sở thích' không được để trống"
+    },
+    "references": {
+        "title": "Người tham chiếu",
+        "name-placeholder": "Tên người liên hệ",
+        "name-msgError": "'Tên người liên hệ' không được để trống",
+        "content-placeholder": "Thông tin người liên hệ",
+        "content-msgError": "'Thông tin người liên hệ' không được để trống"
+    },
+    "additionalInformation": {
+        "title": "Thông tin thêm",
+        "content-placeholder": "Điền thêm thông tin khác (nếu có)",
+        "content-msgError": "'Thông tin thêm' không được để trống"
+    },
+    "contact": "Liên hệ"
+}

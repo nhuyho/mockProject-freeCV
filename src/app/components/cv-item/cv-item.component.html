@@ -1,0 +1,50 @@
+
+<div class="row">
+    <div class="list-cv__template-cv--cv-item box-shadow col-6">
+        <div class="list-cv__template-cv--cv-thumbnail">
+            <a href="#">
+                <div class="label-status label-status-new" *ngIf="itemCvData.isFirtClass === false; else firstClass">
+                    <i class="fa fa-certificate"></i>
+                    Mới
+                </div>
+                <ng-template #firstClass>
+                    <div class="label-status label-status-first-class">
+                        <i class="fa fa-star"></i>
+                        Cao cấp
+                    </div>
+                </ng-template>
+                <img src="{{ itemCvData.thumbnail }}" alt="" />
+            </a>
+            <div class="list-cv__template-cv--cv-overlay">
+                <div>
+                    <a href="#">
+                        <span class="btn-preview">
+                            <i class="fa fa-eye"></i>
+                            Xem trước
+                        </span>
+                    </a>
+                    <a [routerLink]="'/user/create-cv/' + itemCvData.template">
+                        <span class="btn-create">
+                            <i class="fa fa-pencil-alt"></i>
+                            Dùng mẫu này
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="list-cv__template-cv--cv-info">
+            <div class="cv-info__label">
+                <a [routerLink]="'/user/create-cv/' + itemCvData.template" class="cv-info__label--tag" *ngFor="let item of itemCvData.labels">{{item}}</a>
+            </div>
+            <div class="list-cv__template-cv--title">
+                <a [routerLink]="'/user/create-cv/' + itemCvData.template"> {{itemCvData.name}} </a>
+            </div>
+            <div class="list-cv__template-cv--color-list">
+                <div *ngFor="let item of itemCvData.colors"
+                    class="list-cv__template-cv--color-item"
+                    [style.backgroundColor]="item"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>

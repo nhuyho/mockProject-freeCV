@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+        <div class="cv__item-thumbnail">
+            <img [src]="cvTemplate.thumbnail"
+                alt="thumbnail cv">
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <div class="cv__item-content">
+            <div class="cv__title d-flex justify-content-between align-items-center">
+                <h3>{{cvTemplate.cvTitle}}</h3>
+                <div class="cv__date-created">
+                    <span><i class="fa fa-clock"></i> {{cvTemplate.latestUpdate | date: 'medium'}}</span>
+                </div>
+            </div>
+            <div class="cv__url">
+                <input type="text" value="https://i.topcv.vn/nguyenxuanhau?ref=4540849"
+                disabled>
+            </div>
+            <div class="cv__action">
+                <button><i class="fa fa-eye"></i> Xem</button>
+                <button><i class="fa fa-download"></i> Tải Xuống</button>
+                <button><a [routerLink]="'/user/update-cv/' + cvTemplate.id"><i class="fa fa-pencil-alt"></i> Sửa</a></button>
+                <button (click)="openDialog()"><i class="fa fa-trash-alt"></i> Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal__confirm" *ngIf="opened">
+    <div class="modal__content">
+        <div class="modal__content-text">
+            <h3>Xác nhận</h3>
+            <p><i class="fa fa-exclamation"></i> Bạn có chắc muốn xóa CV này?</p>
+        </div>
+        <div class="modal__content-button">
+            <button class="btn__cancel" (click)="closeDialog()"><i class="fa fa-times"></i> Hủy</button>
+            <button class="btn__delete"><i class="fa fa-check"></i> Xóa</button>
+        </div>
+    </div>
+</div>

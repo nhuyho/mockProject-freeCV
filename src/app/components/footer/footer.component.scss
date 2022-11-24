@@ -1,0 +1,38 @@
+footer {
+    background-color: #f6fbf9;
+    border-top: 1px solid rgb(240, 240, 240);
+}
+
+.footer {
+    &__brand {
+        height: auto;
+        padding: 15px;
+        float: left;
+        font-size: 18px;
+        line-height: 20px;
+    }
+    &__logo {
+        height: 40px;
+        object-fit: cover;
+    }
+    &__wrapper {
+        padding: 2rem 0;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: grey;
+    }
+}
+@media only screen and (max-width: 576px){
+    .footer {
+        &__content {
+            p{
+                font-size: 12px;
+            }
+        }
+    }
+}

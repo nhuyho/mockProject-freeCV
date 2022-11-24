@@ -1,0 +1,82 @@
+.profile-user {
+    min-height: 70vh;
+
+    h1 {
+        font-size: 24px;
+        margin: 20px 0;
+        
+    }
+
+    &__avatar {
+        text-align: center;
+        background-color: #e9ecef;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 25px 0 rgba($color: #000000, $alpha: 0.1);
+
+        &-img {
+            position: relative;
+            height: 70px;
+            width: 70px;
+            margin: 0 auto;
+            cursor: pointer;
+
+
+            input[type="file"] {
+                display: none;
+            }
+            img:first-child { 
+                border-radius: 50%;
+                width: 100%;
+                height: 100%;
+                border: 1px solid #c3c3c3;
+            }
+            img:nth-child(2) {
+                position: absolute;
+                right: -10px;
+                bottom: -10px;
+                height: 35px;
+                width: 35px; 
+            } 
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+    }
+    &__info {
+        margin-top: 20px;
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+    }
+    &__btn {
+        border: none;
+        padding: 10px 40px;
+        font-weight: bold;
+        border-radius: 6px;
+        min-width: 150px;
+
+        background: linear-gradient(96.46deg, #10388A 0%, #4845DF 193.19%);
+        color: #fff;
+    }
+    &__error {
+        margin-top: 5px;
+        color: #d90429;
+        font-weight: bold;
+    }
+}
+
+
+.spinner-border {
+    height: 17px !important;
+    width: 17px !important;
+}

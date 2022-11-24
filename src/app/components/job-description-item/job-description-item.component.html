@@ -1,0 +1,14 @@
+<div class="job__item">
+    <div class="item__img">
+        <a [routerLink]="['/jobs/detail', jobItem.id]">
+            <img src="{{jobItem.thumbnail}}" alt="{{jobItem.title}}">
+        </a>
+    </div>
+    <div class="item__content">
+        <h3>
+            <a [routerLink]="['/jobs/detail', jobItem.id]">{{jobItem.title}}</a>
+        </h3>
+        <p>Số lượng tuyển: {{jobItem.quantity}}</p>
+        <p>Hạn đăng ký: {{jobItem.deadline | date: 'dd/MM/YYYY'}}</p>
+    </div>
+</div>

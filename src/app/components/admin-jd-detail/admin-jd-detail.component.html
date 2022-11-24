@@ -1,0 +1,281 @@
+<div class="container">
+    <!-- Modal -->
+    <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Do you want to save the changes?
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-footer m-auto">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                        [routerLink]="['/admin/jobs']"
+                    >
+                        Don't save
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-success"
+                        data-bs-dismiss="modal"
+                        (click)="onSaveChange()"
+                    >
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="jd-detail__wrapper">
+            <div class="jd-detail__header">
+                <div class="jd-detail__header--block">
+                    <button
+                        class="btn btn-secondary btn-font"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                    >
+                        Go back <i class="fa fa-arrow-left"></i>
+                    </button>
+                </div>
+                <div *ngIf="jobId" class="jd-detail__header--block">
+                    <button
+                        class="btn btn-primary btn-font"
+                        (click)="clickEdit()"
+                    >
+                        Edit <i class="fa fa-edit"></i>
+                    </button>
+                    <button
+                        class="btn btn-danger btn-font"
+                        (click)="clickCancel()"
+                        [disabled]="!isEdit"
+                    >
+                        Cancel <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="jd-detail__form" [formGroup]="detailForm">
+                <div class="jd-detail__form--group-item">
+                    <div
+                        class="
+                            mb-3
+                            jd-detail__form--item
+                            flex-col
+                            jd-detail__form--title-field
+                        "
+                    >
+                        <label>title:</label>
+                        <input
+                            type="text"
+                            max="200"
+                            min="10"
+                            class="form-control"
+                            aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm"
+                            formControlName="title"
+                            [readonly]="!isEdit"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="
+                                detailForm.controls.title?.touched ||
+                                detailForm.controls.title?.dirty
+                            "
+                        >
+                            <small
+                                *ngIf="
+                                    detailForm.controls.title.errors?.required
+                                "
+                                >Can not leave the title blank</small
+                            >
+                            <small
+                                *ngIf="
+                                    detailForm.controls.title.errors?.minlength
+                                "
+                                >Title should not be less than 10
+                                characters</small
+                            >
+                            <small
+                                *ngIf="
+                                    detailForm.controls.title.errors?.maxlength
+                                "
+                                >Title cannot be more than 200 characters</small
+                            >
+                            <small
+                                *ngIf="
+                                    ! detailForm.controls.title.errors?.required &&
+                                    !detailForm.controls.title.errors
+                                        ?.minlength &&
+                                    detailForm.controls.title.errors?.whitespace
+                                "
+                            >
+                                Title can not contain only space.
+                            </small>
+                        </div>
+                    </div>
+                    <div
+                        class="
+                            jd-detail__form--item
+                            upload-file
+                            flex-col
+                            jd-detail__form--title-field
+                        "
+                    >
+                        <span class="flex-row">
+                            <label>Thumbnail:</label>
+                            <div
+                                class="error-message"
+                                *ngIf="
+                                    detailForm.controls.thumbnail?.touched ||
+                                    detailForm.controls.thumbnail?.dirty
+                                "
+                            >
+                                <small
+                                    *ngIf="
+                                        detailForm.controls.thumbnail.errors
+                                            ?.required
+                                    "
+                                >
+                                    Thumbnails cannot be left blank
+                                </small>
+                            </div>
+                            <div
+                                *ngIf="jobDetail?.thumbnail"
+                                class="jd-detail__form--info-image"
+                            >
+                                <small class="message-thumbnail"
+                                    >Thumbnail is available</small
+                                >
+                            </div>
+                        </span>
+                        <input
+                            type="file"
+                            class="form-control"
+                            (change)="onFileThumbnailChange($event)"
+                            [disabled]="!isEdit"
+                        />
+                        <input
+                            type="hidden"
+                            class="form-control"
+                            formControlName="thumbnail"
+                        />
+                    </div>
+                    <div class="jd-detail__form--item">
+                        <label>Address:</label>
+                        <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            formControlName="location"
+                            [attr.disabled]="!isEdit ? '' : null"
+                        >
+                            <option value="hà nội">Hà Nội</option>
+                            <option value="đà nẵng">Đà Nẵng</option>
+                            <option value="tphcm">TP. HCM</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="jd-detail__form--group-item">
+                    <div
+                        class="
+                            jd-detail__form--item jd-detail__form--title-field
+                        "
+                    >
+                        <label>Number of recruits:</label>
+                        <input
+                            type="text"
+                            min="1"
+                            max="100"
+                            class="form-control"
+                            formControlName="quantity"
+                            [readonly]="!isEdit"
+                        />
+                        <div
+                            class="error-message"
+                            *ngIf="
+                                detailForm.controls.quantity?.touched ||
+                                detailForm.controls.quantity?.dirty
+                            "
+                        >
+                            <small
+                                *ngIf="
+                                    detailForm.controls.quantity.errors
+                                        ?.required
+                                "
+                            >
+                                The number of vacancies cannot be left blank
+                            </small>
+                            <small
+                                *ngIf="
+                                    detailForm.get('quantity')?.errors?.pattern
+                                "
+                            >
+                                The number of recruits is from 1 to 100 and is
+                                an integer
+                            </small>
+                        </div>
+                    </div>
+                    <div class="jd-detail__form--item upload-file">
+                        <label> Expiration date:</label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-sm"
+                            formControlName="deadline"
+                            [readonly]="!isEdit"
+                        />
+                    </div>
+                    <div class="jd-detail__form--item">
+                        <label>Technology:</label>
+                        <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            formControlName="technology"
+                            [attr.disabled]="!isEdit ? '' : null"
+                        >
+                            <option
+                                *ngFor="let tech of technologys"
+                                value="{{ tech.value }}"
+                            >
+                                {{ tech.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="jd-detail__form--editor">
+                <angular-editor
+                    placeholder="'Enter text here...'"
+                    [(ngModel)]="htmlContent"
+                    [config]="editorConfig"
+                >
+                </angular-editor>
+                <div class="jd-detail__form--submit">
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-custom-size"
+                        (click)="onSaveJobDetail()"
+                        [disabled]="!isEdit || !detailForm.valid"
+                    >
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

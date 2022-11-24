@@ -1,0 +1,88 @@
+{
+    "titleCv-placeholder": "Title CV",
+    "titleCv-msgError":"'Title CV' is required",
+    "position-placeholder":"Position",
+    "profile": {
+        "title": "Contact Info",
+        "name-placeholder": "FullName",
+        "name-msgError": "'FullName' is required",
+        "gender-placeholder": "Gender",
+        "dob-placeholder": "Date of birth",
+        "email-placeholder": "Email address",
+        "email-msgError": "'Email address' is required",
+        "phone-placeholder": "Phone number",
+        "phone-msgError": "'Phone number' is required",
+        "link-placeholder": "Website, Facebook, Blog,...",
+        "address-placeholder": "Current address",
+        "address-msgError": "'Address' is required"
+    },
+    "objective": {
+        "title": "Objective",
+        "content-placeholder": "Career goals: short term, long term",
+        "content-msgError": "'Objective' is required"
+    },
+    "workExperiences": {
+        "title": "Work Experiences",
+        "company-placeholder": "Company name",
+        "company-msgError": "'Company name' is required",
+        "position-placeholder": "Job position",
+        "startDate-placeholder": "Start date",
+        "endDate-placeholder": "End date",
+        "summary-placeholder": "Description of work"
+    },
+    "activities": {
+        "title": "Activities",
+        "organization-placeholder": "Organization name",
+        "organization-msgError": "'Organization name' is required",
+        "position-placeholder": "Participating position",
+        "startDate-placeholder": "Start date",
+        "endDate-placeholder": "End date",
+        "summary-placeholder": "Detailed description of the activity participated"
+    },
+    "education": {
+        "title": "Education",
+        "school-placeholder": "University name",
+        "school-msgError": "'University name' is required",
+        "major-placeholder": "Major",
+        "startDate-placeholder": "Start date",
+        "endDate-placeholder": "End date",
+        "summary-placeholder": "Detailed description"
+    },
+    "awards": {
+        "title": "Awards",
+        "date-placeholder": "Date",
+        "summary-placeholder": "Award name",
+        "summary-msgError": "'Award name' is required"
+    },
+    "skills": {
+        "title": "Skills",
+        "name-placeholder": "Skill name",
+        "name-msgError": "'Skill name' is required",
+        "content-placeholder": "Describe each skill",
+        "content-msgError": "'Describe skill' is required"
+    },
+    "certifications": {
+        "title": "Certificate",
+        "date-placeholder": "Date",
+        "summary-placeholder": "Certificate name",
+        "summary-msgError": "'Certificate name' is required"
+    },
+    "interests": {
+        "title": "Interests",
+        "content-placeholder": "Briefly write about your personal interests",
+        "content-msgError": "'Interests' is required"
+    },
+    "references": {
+        "title": "References",
+        "name-placeholder": "name people representative",
+        "name-msgError": "'name people representative' is required",
+        "content-placeholder": "Info people representative",
+        "content-msgError": "'Info people representative' is required"
+    },
+    "additionalInformation": {
+        "title": "Additional Information",
+        "content-placeholder": "Fill in additional information (if any)",
+        "content-msgError": "'Additional information' is required"
+    },
+    "contact": "Contact"
+}

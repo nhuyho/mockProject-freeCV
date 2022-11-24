@@ -1,0 +1,119 @@
+<section class="register-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="register-form__left">
+                    <h1>Đăng ký tài khoản</h1>
+                    <div class="register-form__social">
+                        <button class="
+                                btn
+                                register-form__btn register-form__btn--fb
+                            " (click)="loginSocial('facebook')">
+                            <i class="fab fa-facebook-square"></i>
+                            Đăng nhập với Facebook
+                        </button>
+                        <button class="
+                                btn
+                                register-form__btn register-form__btn--google
+                            " (click)="loginSocial('google')">
+                            <i class="fab fa-google-plus-g"></i>
+                            Đăng nhập với Google
+                        </button>
+                        <p>
+                            Khi bạn đăng nhập bằng facebook hoặc google, mặc
+                            định bạn đồng ý với Điều khoản dịch vụ và Chính sách
+                            bảo mật của Fsoft
+                        </p>
+                    </div>
+                    <form class="register-form__form" [formGroup]="registerForm"
+                        (ngSubmit)="handleRegister(registerForm.value)">
+                        <h3>Hoặc sử dụng email</h3>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Họ và tên"
+                                formControlName="fullName" />
+                            <div class="register-form__error" *ngIf="submitted && registerForm.get('fullName')?.errors">
+                                <span *ngIf="
+                                        registerForm.get('fullName')?.errors
+                                            ?.required
+                                    ">Please insert a valid name.</span>
+                                    <span *ngIf="
+                                        registerForm.get('fullName')?.errors
+                                            ?.pattern
+                                    ">Invalid Full Name.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email (để quản lý CV về sau)"
+                                formControlName="email" />
+                            <div class="register-form__error" *ngIf="
+                            submitted && registerForm.get('email')?.errors
+                                ">
+                                <span *ngIf="
+                                        registerForm.get('email')?.errors
+                                            ?.required
+                                    ">Please insert a valid email.</span>
+                                <span *ngIf="
+                                        registerForm.get('email')?.errors
+                                            ?.pattern
+                                    ">Invalid email address.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Mật khẩu"
+                                formControlName="password" />
+                            <div class="register-form__error" *ngIf="
+                            submitted && registerForm.get('password')?.errors
+                                ">
+                                <span *ngIf="
+                                        registerForm.get('password')?.errors
+                                            ?.required
+                                    ">Please insert a valid password.</span>
+                                <span *ngIf="
+                                        registerForm.get('password')?.errors
+                                            ?.minlength
+                                    ">Min length 6 character</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Nhập lại mật khẩu"
+                                formControlName="rePassword" />
+                                <div class="register-form__error"
+                                *ngIf=" submitted && registerForm.get('rePassword')?.errors">
+                                <span *ngIf="registerForm.get('rePassword')?.errors?.required">Please insert a valid
+                                    confirm password.</span>
+                                <span *ngIf="registerForm.get('rePassword')?.errors?.isEqual">Invalid confirm password.</span>
+                            </div>
+                        </div>
+                        <span class="register-form__error"
+                        *ngIf="submitted && registerForm?.errors?.isEqual ">Password does not match</span>
+                        <button type="submit" class="
+                                btn
+                                register-form__btn register-form__btn--login
+                            " [disabled]=" loading">
+                            <span *ngIf="!loading; else isLoading">
+                                Đăng ký
+                            </span>
+                            <ng-template #isLoading>
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </ng-template>
+                        </button>
+                    </form>
+                    <p class="register-form__login">
+                        Bạn đã có tài khoản?
+                        <a routerLink="/login">Đăng nhập</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="register-form__right">
+                    <h3>Hướng dẫn sử dụng FsoftCV</h3>
+                    <p>1. Đăng ký tài khoản mới</p>
+                    <p>2. Viết CV trực tiếp trên FsoftCV</p>
+                    <p>3. Ứng tuyển các việc làm hot ngay trên FsoftCV</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,95 @@
+.navbar__custom{
+  height: 60px;
+ 
+  & .navbar__logo{
+      width: 20%;
+      background:  #0c2646;
+      text-align: center;
+      height: 70px;
+      padding-top: 10px;
+      a{
+          display: inline-block;
+          width: 50%;
+          img{
+              width: 100%;
+          }
+      }
+  }
+  & .navbar__content{
+      height: 60px;
+      width: 80%;
+      padding: 0 15px;
+      background: linear-gradient(
+      to right,
+      #0c2646 0%,
+      #204065 60%,
+      #2a5788 100%
+    );
+      & .navbar__welcome{
+          h2{
+              color: #ffffff;
+              font-size: 25px;
+              line-height: 45px;
+              letter-spacing: 1px;
+              font-weight: 400;
+          }
+      }
+      & .navbar__account{
+          line-height: 100%;
+          a{
+              display: flex;
+              padding-right: 20px;
+              align-items: center;
+              color: #ffffff;
+              text-decoration: none;
+              figure{
+                  display: inline-block;
+                  margin-bottom: 0;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  overflow: hidden;
+                  margin-right: 15px;
+                  border: 1px solid #ffffff;
+              }
+              span{
+                  display: inline-block;
+                  &:hover{
+                      color: #c4fff5;
+                  }
+              }
+          }
+      }
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 539px){
+  .navbar__custom{
+      & .navbar__logo{
+          a{
+              display: inline-block;
+              width: 80%;
+          }
+      }
+      & .navbar__content{
+          & .navbar__welcome{
+              display: none !important;
+          }  
+      } 
+  }
+}
+@media only screen and (min-width: 540px) and (max-width: 767px){
+  .navbar__custom{
+      & .navbar__logo{
+          a{
+              display: inline-block;
+              width: 80%;
+          }
+      }
+      & .navbar__content{
+          & .navbar__welcome{
+              display: none !important;
+          }  
+      } 
+  }
+}

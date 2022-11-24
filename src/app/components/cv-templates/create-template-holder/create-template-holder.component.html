@@ -1,0 +1,27 @@
+<div *ngIf="!formSubmitted" class="templates-container">
+    <app-editor></app-editor>
+    <p-dialog
+        header="Change CV template"
+        [(visible)]="toggleTemplateModel"
+        [style]="{ width: '80vw', height: '80vh' }"
+        [draggable]="false"
+    >
+        <div class="row" *ngFor="let collection of templateCollection">
+            <div class="col-4" *ngFor="let document of collection">
+                <a [routerLink]="'/user/create-cv/' + document.template">
+                    <div class="template-item-document" (click)="onChangeTemplate(document.template)">
+                        <div class="template-item-document__image-container">
+                            <img class="template-item-document__image-container__image" [src]="document.thumbnail" />
+                        </div>
+                        <div class="template-item-document__name-container">
+                            <p>{{ document.name }}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </p-dialog>
+    <ng-container>
+        <ng-container *ngComponentOutlet="templateComponent"></ng-container>
+    </ng-container>
+</div>

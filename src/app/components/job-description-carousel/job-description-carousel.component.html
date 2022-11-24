@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="title">
+        <h4>
+            CÁC KHÓA ĐÀO TẠO
+            <a routerLink="/jobs">Xem tất cả <i class="fa fa-arrow-right"></i></a>
+        </h4>
+    </div>
+    <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let job of jobList">
+            <ng-template carouselSlide>
+                <app-job-description-item [jobItem]="job"></app-job-description-item>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</div>

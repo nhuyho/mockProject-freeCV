@@ -1,0 +1,120 @@
+.banner{
+    position: relative;
+    max-width: 1366px;
+    margin: 0 auto 60px;
+    &__img{ 
+        img{
+            width: 100%;
+        }
+    }
+    &__content{
+        position: absolute;
+        top: 30%;
+        left: 15%;
+        &-text{
+            margin-bottom: 20px;
+            h2{
+                font-size: 38px;
+                
+            }
+        }
+        & .create__apply{
+            & .custom__btn{
+                border-radius: 50px;
+                margin-bottom: 20px;
+                width: 200px;
+                display: inline-block;
+                font-size: 20px;
+                font-weight: bold;
+                color: #ffffff;
+                padding: 10px 20px 10px;
+                margin-right: 20px;
+                text-decoration: none;
+                text-align: center;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+            & .custom__btn-create{
+                background: #00b14f;
+            }
+            & .custom__btn-apply{
+                background: #f1c40e;
+            }
+        }
+    }
+}
+.job__list{
+    margin-bottom: 40px;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px){
+    .banner{
+        &__content{
+            top: 10%;
+            &-text{
+                margin-bottom: 5px;
+                h2{
+                    font-size: 16px;
+                }
+                h3{
+                    font-size: 13px;
+                }
+            }
+        }
+        & .create__apply{
+            text-align: center;
+            & .custom__btn{
+                width: 120px;
+                font-size: 10px;
+                padding: 5px 10px 5px;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    .banner{
+        &__content{
+            top: 10%;
+            &-text{
+                margin-bottom: 5px;
+                h2{
+                    font-size: 20px;
+                }
+                h3{
+                    font-size: 18px;
+                }
+            }
+        }
+        & .create__apply{
+            text-align: center;
+            & .custom__btn{
+                width: 120px !important;
+                font-size: 10px !important;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 769px) and ( max-width: 992px) {
+    .banner{
+        &__content{
+            &-text{
+                h2{
+                    font-size: 24px;
+                }
+                h3{
+                    font-size: 20px;
+                }
+            }
+        }
+        & .create__apply{
+            text-align: center;
+            & .custom__btn{
+                width: 140px !important;
+                font-size: 13px !important;
+            }
+        }
+    }
+}

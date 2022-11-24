@@ -1,0 +1,109 @@
+<div class="job__detail">
+    <div class="container">
+        <div class="job__banner">
+            <div class="job__banner-img">
+                <img src="https://fsoft-academy.edu.vn/public/uploads/images/5e417cd336a72b06a86c73e7_Flutter-Tutorial-Header%402x.jpg" alt="image banner">
+            </div>
+        </div>
+        <div class="job__main">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                    <div class="job__main-title">
+                        <div class="row">
+                            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                <div class="main__title-img">
+                                    <img src="{{jobDetail?.thumbnail}}" 
+                                    alt="{{jobDetail?.title}}">
+                                </div>
+                            </div>
+                            <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+                                <div class="main__title-text">
+                                    <strong>{{jobDetail?.workingForm | uppercase}}</strong>
+                                    <h2>{{jobDetail?.title}}</h2>
+                                    <span>
+                                        Đăng bởi Admin: {{jobDetail?.createAt | date: 'dd/MM/yyyy'}}
+                                    </span>
+                                    <p>
+                                        <i class="fa fa-map-marker-alt"></i>
+                                        {{jobDetail?.location | uppercase}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div [innerHTML]="jobDetail?.content">
+                    </div>
+                    <div class="job__main-share">
+                        <p>Chia Sẻ Công Việc</p>
+                        <a href="#"><i class="fa fa-envelope"></i></a>
+                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="job__apply">
+                        <p>Hạn ứng tuyển: {{jobDetail?.deadline | date: 'dd/MM/yyyy'}}</p>
+                        <button class="btn btn-primary">
+                            Ứng tuyển 
+                            <i class="fa fa-arrow-right"></i>
+                        </button>
+                        
+                    </div>
+                    <div class="job__information">
+                        <h4>Job Information</h4>
+                        <ul>
+                            <li class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <img src="/assets/images/icon-salary.png"
+                                    alt="icon salary"
+                                    >
+                                </div>
+                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <strong>Mức lương</strong>
+                                    <p>
+                                        <span>{{jobDetail?.salaryMin}}</span>
+                                        <span> - </span>
+                                        <span>{{jobDetail?.salaryMax}}</span>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <img src="/assets/images/icon-experience.png"
+                                    alt="icon experience">
+                                </div>
+                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <strong>Kinh nghiệm</strong>
+                                    <p>{{jobDetail?.exp}}</p>
+                                </div>
+                            </li>
+                            <li class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <img src="/assets/images/icon-position.png"
+                                    alt="icon position"
+                                    >
+                                </div>
+                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <strong>Vị trí</strong>
+                                    <p>{{jobDetail?.workingForm}}</p>
+                                </div>
+                            </li>
+                            <li class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <img src="/assets/images/icon-address.png"
+                                    alt="icon address"
+                                    >
+                                </div>
+                                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                    <strong>Địa chỉ</strong>
+                                    <p>{{jobDetail?.location | uppercase}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

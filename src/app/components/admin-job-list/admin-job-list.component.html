@@ -1,0 +1,120 @@
+<div class="card">
+    <p-dataView *ngIf="jobList" #job [value]="
+            jobList | filter: selectedPlace:selectedTechnology:selectedWork
+        " [paginator]="true" [rows]="8" layout="grid" [style]="{ background: '#fff' }"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} job(s)">
+        <ng-template pTemplate="header">
+            <div class="job__filter">
+                <span class="p-input-icon-left mb-3">
+                    <i class="pi pi-search"></i>
+                    <input type="search" pInputText placeholder="Search by Name" [(ngModel)]="searchText"
+                        (ngModelChange)="onSearch()" [ngModelOptions]="{ standalone: true }"
+                        [style]="{ width: '23rem '}" class="mr-2" />
+                </span>
+                <p-dropdown [options]="place" [(ngModel)]="selectedPlace" optionLabel="name" [showClear]="true"
+                    placeholder="Location" styleClass="mx-2 mb-2 mb-md-0">
+                    <ng-template pTemplate="selectedPlace">
+                        <div class="country-item country-item-value" *ngIf="selectedPlace">
+                            <div>{{ selectedPlace.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-place pTemplate="item">
+                        <div class="country-item">
+                            <div>{{ place.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+
+                <p-dropdown [options]="technology" [(ngModel)]="selectedTechnology" optionLabel="name"
+                    [showClear]="true" placeholder="Technology" styleClass="mx-2 mb-2 mb-md-0">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value" *ngIf="selectedTechnology">
+                            <div>{{ selectedTechnology.name }}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-technology pTemplate="item">
+                        <div class="country-item">
+                            <div>{{ technology.name }}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <button pButton class="px-5 py-0 ml-2" type="button" label="Create"
+                    [routerLink]="['/admin/jobs/create']"> </button>
+            </div>
+        </ng-template>
+        <ng-template let-item pTemplate="gridItem" class="ml-5">
+            <div class="col-3 card-item mt-2">
+                <div class="job-grid-item card">
+                    <div class="job-grid-item-top">
+                        <img src="{{ item.thumbnail }}" alt="" />
+                        <div class="job__item-overlay">
+                            <button pButton pRipple type="button" label="Edit" class="p-button-raised p-button-success" (click)="editJob(item)">
+                                <i class="pi pi-user-edit "></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="job-grid-item-content">
+                            <h4 class="job-name">
+                                <a [routerLink]="['/admin/jobs/detail', item.id]"> {{ item.title }}</a>
+                            </h4>
+                            <div class="job-description">
+                                Thời gian khai giảng :
+                                {{ item.createAt | date }}
+                            </div>
+                            <div class="job-grid-item-bottom">
+                                <p class="job-date">
+                                    Hạn đăng kí: {{ item.deadline | date }}
+                                </p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
+<p-dialog class="job__update" header="EDIT JOB" [(visible)]="displayModal" [modal]="true" [style]="{ width: '50vw' }"
+    [baseZIndex]="10000" [draggable]="false">
+    <form [formGroup]="updateForm" class="form__update">
+        <div class="row">
+            <div class="col-12">
+                <label for="">Tên khoá đào tạo:</label>
+                <input type="text" class="form-control" formControlName="title" placeholder="Khóa đào tạo" [ngClass]="{
+                    'is-invalid':
+                       form.title.invalid &&
+                       (form.title.dirty || form.title.touched)
+                 }"/>
+                 <div *ngIf="form.title.errors" class="invalid-feedback">
+                    <span *ngIf="form.title.errors?.required"
+                       >Name is required
+                    </span>
+                    <span
+                       *ngIf="
+                          form.title.errors?.minlength &&
+                          !form.title.errors?.maxlength
+                       "
+                    >
+                    Only 10 to 200 characters long
+                    </span>
+
+                 </div>
+            </div>
+        </div>
+        <div class="row pt-3 date" [style]="{ height: '23rem' }">
+            <div class="col-6 date__item">
+                <label for="">Thời gian khai giảng:</label>
+                <p-calendar formControlName="createAt" [showIcon]="true" inputId="icon"></p-calendar>
+            </div>
+            <div class="col-6 date__item">
+                <label for="" class="d-block">Thời hạn đăng kí:</label>
+                <p-calendar formControlName="deadline" [showIcon]="true" inputId="icon"></p-calendar>
+            </div>
+        </div>
+    </form>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" label="Save" class="p-button-text" (click)="onSave()"></p-button>
+        <p-button icon="pi pi-times" (click)="displayModal = false" label="Cancel"></p-button>
+    </ng-template>
+</p-dialog>

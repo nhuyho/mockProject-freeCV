@@ -1,0 +1,67 @@
+@import "../../../scss/_variables.scss";
+
+.list-cv {
+    &__wrap-title {
+        text-align: center;
+        h3 {
+            color: $heading-color;
+            font-size: 2.25rem;
+            line-height: 30px;
+            font-weight: 700;
+            padding-top: 16pt;
+            padding-bottom: 4pt;
+        }
+        &--label {
+            color: $text-color;
+            font-size: 15px;
+        }
+    }
+    &__template-cv {
+        padding: 0 5px;
+    }
+}
+
+@media (min-width: 576px) {
+    .list-cv {
+        &__wrap-title {
+            h3 {
+                font-size: 1.5rem;
+            }
+        }
+        &__template-cv {
+            &--cv-item {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .list-cv {
+        &__wrap-title {
+            h3 {
+                font-size: 1.65rem;
+            }
+        }
+        &__template-cv {
+            &--cv-item {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .list-cv {
+        &__wrap-title {
+            h3 {
+                font-size: 2.2rem;
+            }
+        }
+        &__template-cv {
+            &--cv-item {
+                width: 100%;
+            }
+        }
+    }
+}

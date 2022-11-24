@@ -1,0 +1,421 @@
+@import url("https://fonts.googleapis.com/css2?family=Maitree:wght@400;500;700&family=Open+Sans:wght@400;500;700&family=Prompt:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap");
+.pr-16 {
+    padding-right: 16px;
+}
+.input-bold {
+    font-weight: bold;
+}
+button:focus,
+button:active {
+    outline: none;
+    box-shadow: none;
+}
+a {
+    text-decoration: none;
+}
+p[contenteditable],
+span[contenteditable] {
+    outline: none;
+    margin-bottom: 0;
+    border: transparent 1px solid;
+}
+span[contenteditable]:empty {
+    display: inline-block;
+    min-width: 100px;
+}
+[data-placeholder]:empty::before {
+    content: attr(data-placeholder);
+    color: #888;
+    font-style: italic;
+    cursor: text;
+}
+p.form-input {
+    margin: 0;
+    padding: 0.1rem;
+    border: 1px solid transparent;
+    padding: 0.5rem 0;
+    &:hover,
+    &:focus-visible {
+        outline: none;
+        border: 1px dashed black;
+    }
+    &.validator-error {
+        border: 1px dashed red;
+    }
+}
+:host ::ng-deep {
+    .p-tooltip-text {
+        font-size: small;
+        color: #ff0000;
+    }
+    .p-progress-spinner {
+        margin: auto;
+        width: 100%;
+    }
+}
+
+.cvContainer {
+    width: 210mm;
+    background-color: #fafafa;
+    margin: auto;
+    i.fa {
+        width: 22px;
+        height: 22px;
+        color: #fcbd88;
+        display: inline-block;
+        text-align: center;
+        font-size: 16px;
+        line-height: 22px;
+        margin-right: 4px;
+    }
+    form {
+        textarea {
+            width: 100%;
+            overflow: hidden;
+            border: none;
+            outline: none;
+            resize: none;
+            border: 1px solid transparent;
+            &:hover,
+            &:focus-visible {
+                border: 1px dotted black;
+                outline: none;
+            }
+        }
+        .cvTitle {
+            p {
+                font-size: 1.25rem;
+            }
+        }
+        .cvHeader {
+            display: flex;
+            &__avatar {
+                width: 42%;
+                text-align: center;
+                margin: auto;
+                z-index: 9;
+                img {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 50%;
+                }
+            }
+            &__profile {
+                width: 58%;
+                text-align: center;
+                padding-top: 40px;
+                padding-left: 16px;
+                padding-right: 16px;
+                span {
+                    display: inline-block;
+                }
+                &__name {
+                    border-bottom: 1px solid #4a4a4a;
+                    p {
+                        width: 100%;
+                        text-align: center;
+                        font-weight: 500;
+                        font-size: 1.75em;
+                        text-transform: uppercase;
+                        height: fit-content;
+                    }
+                }
+                &__title {
+                    p {
+                        font-size: 1em;
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+        .cvMain {
+            padding: 0 16px 32px;
+            display: flex;
+            &__left {
+                width: 42%;
+                margin-top: -40px;
+                padding-top: 24px;
+                padding-right: 12px;
+                &__basicInfo {
+                    textarea {
+                        text-align: start;
+                        display: inline;
+                    }
+                }
+            }
+            &__right {
+                width: 58%;
+                min-height: 560px;
+                padding-left: 12px;
+                padding-top: 24px;
+                margin-top: -40px;
+            }
+            .cvBlock {
+                position: relative;
+                width: 100%;
+                margin-bottom: 24px;
+                background-color: #fff;
+                border: 3px solid transparent;
+                border-radius: 5px;
+                border-top-left-radius: 0;
+                padding: 16px;
+                box-shadow: 2px 2px 8px 2px rgb(123, 123, 123, 10%);
+                &:hover {
+                    border-color: #95a5a6;
+                    .controller2 {
+                        display: block;
+                    }
+                }
+                &__title {
+                    margin: 0 0 4px;
+                    font-size: 18px;
+                    line-height: 32px;
+                    font-weight: 500;
+                    background-color: #fcbd88;
+                    color: #333;
+                    text-transform: uppercase;
+                    width: 100%;
+                    position: relative;
+                    padding-left: 16px;
+                }
+            }
+            .cvInfoDetail {
+                margin-top: 12px;
+                position: relative;
+                border: 1px solid transparent;
+                &:hover {
+                    border-color: #bdc3c7;
+                    .controller {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#contactInfo > div {
+    padding: 5px 0;
+}
+.controller {
+    position: absolute;
+    right: 0;
+    top: -25px;
+    display: none;
+    i.fa {
+        color: black;
+        margin: auto;
+        font-size: 0.8rem;
+        height: unset;
+        line-height: unset;
+    }
+    button {
+        padding: 0.1rem 0.2rem;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+        .fa-minus,
+        .fa-plus {
+            color: #fff;
+        }
+    }
+    button.btn-add {
+        background-color: #1abc9c;
+        border-color: #1abc9c;
+        &:hover {
+            background-color: #16a085;
+            border-color: #16a085;
+        }
+    }
+    button.btn-minus {
+        background-color: #e74c3c;
+        border-color: #e74c3c;
+        &:hover {
+            background-color: #c0392b;
+            border-color: #c0392b;
+        }
+    }
+    .move-btn {
+        border: 1px solid #95a5a6;
+        background-color: #ecf0f1;
+    }
+}
+.controller2 {
+    position: absolute;
+    left: -3px;
+    top: -2.32rem;
+    padding: 0.3rem;
+    display: none;
+    background: #95a5a6;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    button {
+        position: relative;
+        padding: 0.1rem 0.2rem;
+    }
+    .btn-sort {
+        background-color: #fff;
+        border-radius: 3px;
+        div {
+            width: 20px;
+            height: 4px;
+            background-color: #7f8c8d;
+            margin-bottom: 0.1rem;
+        }
+    }
+    .btn-hide {
+        font-size: 0.7rem;
+        i.fa {
+            color: #fff;
+            font-size: 0.7rem;
+        }
+    }
+}
+// Sort
+#sort {
+    background-color: #efefef;
+    padding: 10px 15px 1px 14px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    div {
+        background-color: #ccc;
+        padding: 10px 40px;
+        margin-bottom: 10px;
+        font-weight: 500;
+        border-radius: 3px;
+        position: relative;
+        .selector {
+            font-size: 18px;
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border-color: #fff;
+            cursor: pointer;
+            &:focus {
+                outline: none;
+                box-shadow: none;
+            }
+            &:checked {
+                background-image: url("/assets/images/cv-template/check.jpg");
+                background-color: #fff;
+                border-color: #fff;
+            }
+        }
+    }
+}
+// Image Upload
+#uploadImg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(155, 155, 155, 0.9);
+    z-index: 22222222;
+    .uploadContainer {
+        padding: 0;
+        width: 90%;
+        min-height: 300px;
+        margin: 0 auto;
+        margin-top: 80px;
+        background-color: #fff;
+        overflow: hidden;
+        width: 750px;
+        text-align: center;
+        h3 {
+            width: 100%;
+            padding: 10px;
+            background-color: #1f8c67;
+            color: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .uploadMain {
+            display: flex;
+            .editor-col-left {
+                position: relative;
+                overflow: hidden;
+                width: 450px;
+                height: 300px;
+                .editorChooseImage {
+                    display: none;
+                    .btn-choose-image {
+                        display: inline-block;
+                        height: 190px;
+                        vertical-align: middle;
+                        line-height: 60px;
+                        margin-top: 20px;
+                        width: 90%;
+                        color: #999;
+                        border: 2px dashed #0b85a1;
+                        i {
+                            font-size: 50px;
+                            margin-top: 50px;
+                        }
+                    }
+                }
+                .editorChooseImage.show {
+                    display: block;
+                }
+                .imageEditor {
+                    display: none;
+                    width: 430px;
+                    height: 220px;
+                    .source-image {
+                        display: block !important;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+                .imageEditor.show {
+                    display: block;
+                }
+                .tipCompress {
+                    font-size: 14px;
+                    color: red;
+                    margin-top: 5px;
+                    margin-left: 20px;
+                    text-align: left;
+                }
+            }
+            .editor-col-right {
+                width: 300px;
+                .img-edit-preview {
+                    border: 1px solid rgb(239, 239, 239);
+                    width: 160px;
+                    height: 160px;
+                    overflow: hidden;
+                    margin: 0 auto;
+                }
+                .edit-img-btns {
+                    .btn-change-image {
+                        background-color: #4a8cf7;
+                        margin-right: 5px;
+                        color: #fff;
+                    }
+                    .btn-remove-image {
+                        background-color: red;
+                        color: #fff;
+                    }
+                }
+                .btn-save-image {
+                    width: 160px;
+                    font-size: 1.2rem;
+                    line-height: 1.2rem;
+                    background-color: #1f8c67;
+                    color: #fff;
+                }
+                .btn-close-image-editor {
+                    margin-top: 5px;
+                    display: block;
+                    font-size: 14px;
+                    text-decoration: underline;
+                    color: red;
+                }
+            }
+        }
+    }
+}

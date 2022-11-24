@@ -1,0 +1,419 @@
+<!-- MAIN CV FORM -->
+<div class="cvContainer" *ngIf="!displayMode" [style.font-family]="editOptions.font"
+    [style.font-size]="editOptions.fontSize" [style.line-height]="editOptions.lineHeight">
+    <form #CV [formGroup]="cvForm">
+        <div class="cvTitle">
+            <p style="width: 100%; text-align: center; margin-bottom: 40px;" class="form-input"
+                formControlName="cvTitle" contenteditable data-placeholder="Tiêu đề CV"></p>
+        </div>
+        <div class="cvMain">
+            <div class="cvMain__left" #leftSide [style.background-color]="editOptions.themeColor">
+                <div class="cvAvatar">
+                    <img [src]="profileImage" style="cursor: pointer" (click)="imageEditorIsOn = true" />
+                </div>
+                <div class="cvBlock" formGroupName="basics">
+                    <div class="cvBlock__title--left" [style.background-color]="editOptions.themeColor">
+                        {{'contact' | translate}}
+                    </div>
+                    <div id="contactInfo">
+                        <div class="profileInfo d-flex align-items-center">
+                            <i class="icon fa fa-user" [style.color]="editOptions.themeColor"></i>
+                            <p class="form-input" formControlName="gender" contenteditable data-placeholder="Giới tính">
+                            </p>
+                        </div>
+                        <div class="profileInfo d-flex align-items-center">
+                            <i class="icon fa fa-calendar-alt" [style.color]="editOptions.themeColor"></i>
+                            <p class="form-input" formControlName="dob" contenteditable
+                                data-placeholder="Ngày, tháng. năm sinh"></p>
+                        </div>
+                        <div class="profileInfo d-flex align-items-center">
+                            <i class="icon fa fa-envelope-square" [style.color]="editOptions.themeColor"></i>
+                            <p class="form-input" formControlName="email" contenteditable
+                                data-placeholder="Địa chỉ email"></p>
+                        </div>
+                        <div class="profileInfo d-flex align-items-center">
+                            <i class="icon fa fa-phone" [style.color]="editOptions.themeColor"></i>
+                            <p class="form-input" formControlName="phone" contenteditable
+                                data-placeholder="Số điện thoại"></p>
+                        </div>
+                        <div class="profileInfo d-flex align-items-center">
+                            <i class="icon fa fa-link" [style.color]="editOptions.themeColor"></i>
+                            <p class="form-input" formControlName="link" contenteditable
+                                data-placeholder="Website, Facebook, Blog,..."></p>
+                        </div>
+                        <div class="profileInfo d-flex align-items-center">
+                            <i class="icon fa fa-home" [style.color]="editOptions.themeColor"></i>
+                            <p class="form-input" formControlName="address" contenteditable
+                                data-placeholder="Địa chỉ hiện tại"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" *ngIf="display.skills">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'skills' }"></ng-container>
+                    <div class="cvBlock__title--left" [style.background-color]="editOptions.themeColor">
+                        {{'skills' | translate}}
+                    </div>
+                    <div formArrayName="skills">
+                        <div class="cvInfoDetail" *ngFor="let control of skills.controls; let i = index"
+                            [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="controller; context: { index: i, form: skills }">
+                            </ng-container>
+                            <div>
+                                <p class="form-input input-bold" formControlName="name" contenteditable
+                                    data-placeholder="Tên kỹ năng"></p>
+                                <p class="form-input" formControlName="level" contenteditable hidden
+                                    data-placeholder="Mô tả từng kỹ năng"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" *ngIf="display.interests">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'interests' }"></ng-container>
+                    <div class="cvBlock__title--left" [style.background-color]="editOptions.themeColor">
+                        {{'interests' | translate}}
+                    </div>
+                    <p class="form-input" formControlName="interests" contenteditable
+                        data-placeholder="Nói ngắn gọn về các sở thích cá nhân"></p>
+                </div>
+                <div class="cvBlock" *ngIf="display.references">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'references' }"></ng-container>
+                    <div class="cvBlock__title--left" [style.background-color]="editOptions.themeColor">
+                        {{'references' | translate}}
+                    </div>
+                    <div formArrayName="references">
+                        <div class="cvInfoDetail" *ngFor="let control of references.controls; let i = index"
+                            [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="controller; context: { index: i, form: references }">
+                            </ng-container>
+                            <div>
+                                <p class="form-input input-bold" formControlName="name" contenteditable
+                                    data-placeholder="Tên người liên hệ"></p>
+                                <p class="form-input" formControlName="reference" contenteditable
+                                    data-placeholder="Thông tin người liên hệ"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" *ngIf="display.additionalInformation">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'additionalInformation' }">
+                    </ng-container>
+                    <div class="cvBlock__title--left" [style.background-color]="editOptions.themeColor">
+                        {{'additionalInformation' | translate}}
+                    </div>
+                    <p class="form-input" formControlName="additionalInformation" contenteditable
+                        data-placeholder="Điền thêm thông tin khác (nếu có)"></p>
+                </div>
+            </div>
+            <div class="cvMain__right">
+                <div class="cvProfile">
+                    <div class="cvProfile__name" formGroupName="basics">
+                        <p style="width: 100%; text-align: center" class="form-input" formControlName="name"
+                            contenteditable data-placeholder="Tên ứng viên"></p>
+                    </div>
+                    <div class="cvProfile__title">
+                        <p class="form-input" formControlName="title" contenteditable
+                            data-placeholder="Vị trí ứng tuyển">
+                        </p>
+                    </div>
+                </div>
+                <div class="cvBlock" *ngIf="display.objective">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'objective' }"></ng-container>
+                    <div class="cvBlock__title--right" [style.color]="editOptions.themeColor">
+                        {{'objective' | translate}}
+                    </div>
+                    <div class="cvBlock__objective">
+                        <p class="form-input" formControlName="objective" contenteditable
+                            data-placeholder="Mục tiêu nghề nghiệp: ngắn hạn, dài hạn"></p>
+                    </div>
+                </div>
+                <div class="cvBlock" formArrayName="education" *ngIf="display.education">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'education' }"></ng-container>
+                    <div class="cvBlock__title--right" [style.color]="editOptions.themeColor">
+                        {{'education' | translate}}
+                    </div>
+                    <div class="cvBlock__educationTable cvInfoDetail"
+                        *ngFor="let control of education.controls; let i = index" [formGroupName]="i">
+                        <ng-container *ngTemplateOutlet="controller; context: { index: i, form: education }">
+                        </ng-container>
+                        <div class="cvBlock__educationTable__title d-flex align-items-center">
+                            <p class="form-input input-bold" contenteditable formControlName="institution"
+                                data-placeholder="Tên trường Đại học"></p>
+                        </div>
+                        <div class="cvBlock__educationTable__educationTime d-flex align-items-center">
+                            <p>Khóa học: </p>
+                            <p class="form-input" contenteditable formControlName="startDate"
+                                data-placeholder="Bắt đầu"></p>
+                            <span>-</span>
+                            <p class="form-input" contenteditable formControlName="endDate" data-placeholder="Kết thúc">
+                            </p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <p>Chuyên ngành: </p>
+                            <p class="form-input" contenteditable formControlName="major"
+                                data-placeholder="Ngành học / Môn học"></p>
+                        </div>
+                        <div class="cvBlock__educationTable__description">
+                            <p class="form-input" contenteditable formControlName="summary"
+                                data-placeholder="Mô tả chi tiết"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" formArrayName="workExperience" *ngIf="display.workExperience">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'workExperience' }"></ng-container>
+                    <div class="cvBlock__title--right" [style.color]="editOptions.themeColor">
+                        {{'workExperiences' | translate}}
+                    </div>
+                    <div class="cvInfoDetail" *ngFor="let control of work.controls; let i = index" [formGroupName]="i">
+                        <ng-container *ngTemplateOutlet="controller; context: { index: i, form: work }"></ng-container>
+                        <div class="content__info">
+                            <p class="form-input input-bold" contenteditable formControlName="name"
+                                data-placeholder="Tên công ty"></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <p class="form-input" contenteditable formControlName="startDate"
+                                data-placeholder="Bắt đầu"></p>
+                            <span> - </span>
+                            <p class="form-input" contenteditable formControlName="endDate" data-placeholder="Kết thúc">
+                            </p>
+                        </div>
+                        <div class="text__position">
+                            <span>Chức vụ: </span>
+                            <span class="form-input" contenteditable formControlName="position"
+                                data-placeholder="Vị trí công việc"></span>
+                        </div>
+                        <div>
+                            <p class="form-input" style="width: 100%" formControlName="summary" contenteditable
+                                data-placeholder="Mô tả chi tiết công việc, những gì đạt được trong quá trình làm việc.">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" formArrayName="activities" *ngIf="display.activities">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'activities' }"></ng-container>
+                    <div class="cvBlock__title--right" [style.color]="editOptions.themeColor">
+                        {{'activities' | translate}}
+                    </div>
+                    <div class="cvBlock__educationTable cvInfoDetail"
+                        *ngFor="let control of activities.controls; let i = index" [formGroupName]="i">
+                        <ng-container *ngTemplateOutlet="controller; context: { index: i, form: activities }">
+                        </ng-container>
+                        <div class="content__info">
+                            <p class="form-input input-bold" contenteditable formControlName="organization"
+                                data-placeholder="Tên tổ chức"></p>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end">
+                            <p class="form-input" contenteditable formControlName="startDate"
+                                data-placeholder="Bắt đầu"></p>
+                            <span>-</span>
+                            <p class="form-input" contenteditable formControlName="endDate" data-placeholder="Kết thúc">
+                            </p>
+                        </div>
+                        <div class="text__position">
+                            <span>Vị trí: </span>
+                            <span class="form-input text__position" contenteditable formControlName="position"
+                                data-placeholder="Vị trí tham gia"></span>
+                        </div>
+                        <div>
+                            <p class="form-input" contenteditable formControlName="summary"
+                                data-placeholder="Mô tả chi tiết hoạt động đã tham gia"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" formArrayName="awards" *ngIf="display.awards">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'awards' }"></ng-container>
+                    <div class="cvBlock__title--right" [style.color]="editOptions.themeColor">
+                        {{'awards' | translate}}
+                    </div>
+                    <div class="cvInfoDetail" *ngFor="let control of awards.controls; let i = index"
+                        [formGroupName]="i">
+                        <ng-container *ngTemplateOutlet="controller; context: { index: i, form: awards }">
+                        </ng-container>
+                        <div class="d-flex align-items-center">
+                            <p class="form-input input-bold" formControlName="date" contenteditable
+                                data-placeholder="Thời gian"></p>
+                            <p class="form-input" formControlName="summary" contenteditable
+                                data-placeholder="Tên giải thưởng"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cvBlock" formArrayName="certifications" *ngIf="display.certifications">
+                    <ng-container *ngTemplateOutlet="controller2; context: { field: 'certifications' }"></ng-container>
+                    <div class="cvBlock__title--right" [style.color]="editOptions.themeColor">
+                        {{'certifications' | translate}}
+                    </div>
+                    <div class="cvInfoDetail" *ngFor="let control of certifications.controls; let i = index"
+                        [formGroupName]="i">
+                        <ng-container *ngTemplateOutlet="controller; context: { index: i, form: certifications }">
+                        </ng-container>
+                        <div class="d-flex align-items-center">
+                            <p class="form-input input-bold" formControlName="date" contenteditable
+                                data-placeholder="Thời gian"></p>
+                            <p class="form-input" formControlName="summary" contenteditable
+                                data-placeholder="Tên chứng chỉ"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- END OF MAIN CV FORM -->
+<!-- UPLOAD IMAGE -->
+<div id="uploadImg" style="display: block" *ngIf="imageEditorIsOn">
+    <div class="uploadContainer">
+        <h4>Chỉnh sửa ảnh đại diện</h4>
+        <div class="uploadMain">
+            <div class="editor-col-left">
+                <h5>Ảnh gốc</h5>
+                <div class="editorChooseImage" [class.show]="imageChangedEvent === ''">
+                    <span style="cursor: pointer;" class="btn-choose-image" (click)="uploadImageInput.click()"><i
+                            class="fa fa-image"></i>
+                        <br />
+                        Click hoặc kéo thả ảnh để tải lên</span>
+                    <input #uploadImageInput type="file" style="display: none" (change)="fileChangeEvent($event)" />
+                </div>
+                <div class="imageEditor" [class.show]="imageChangedEvent !== ''">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                        [containWithinAspectRatio]="containWithinAspectRatio" [resizeToWidth]="160"
+                        [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                        [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'center'"
+                        [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"></image-cropper>
+                </div>
+                <div class="tipCompress">
+                    Nếu ảnh của bạn có dung lượng trên 5MB, vui lòng
+                    <a href="https://compressor.io/" target="_blank" style="color: black">bấm vào đây</a>
+                    để giảm dung lượng ảnh
+                </div>
+            </div>
+            <div class="editor-col-right">
+                <h5>Ảnh hiển thị trên CV</h5>
+                <div class="imageEditorControls">
+                    <div class="img-edit-preview">
+                        <img style="width: 100%" [src]="croppedImage" />
+                    </div>
+                    <div class="edit-img-btns mt-2">
+                        <button class="btn btn-change-image" (click)="uploadImageInput.click()">
+                            Đổi ảnh
+                        </button>
+                        <button class="btn btn-remove-image" (click)="onDeleteProfileImage()">
+                            Xóa ảnh
+                        </button>
+                    </div>
+                    <div class="mt-2">
+                        <button class="btn btn-save-image" (click)="onDoneEditImage()">
+                            Xong
+                        </button>
+                    </div>
+                    <div>
+                        <span class="btn-close-image-editor" style="cursor: pointer;"
+                            (click)="imageEditorIsOn = false">Đóng lại (Không lưu)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF UPLOAD IMAGE -->
+<!-- DISPLAY MODE -->
+<div *ngIf="displayMode" style="width: 450px; margin: auto; margin-top: 2rem">
+    <div id="sort" style="width: 80%; margin: auto">
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="objective" [checked]="display.objective"
+                (change)="display.objective = !display.objective" />
+            <label class="form-check-label"> Mục tiêu nghề nghiệp </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.skills"
+                (change)="display.skills = !display.skills" />
+            <label class="form-check-label"> Các kỹ năng </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.interests"
+                (change)="display.interests = !display.interests" />
+            <label class="form-check-label"> Sở thích </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.references"
+                (change)="display.references = !display.references" />
+            <label class="form-check-label"> Người tham chiếu </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.additionalInformation"
+                (change)="
+          display.additionalInformation = !display.additionalInformation
+        " />
+            <label class="form-check-label"> Thông tin thêm </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.education"
+                (change)="display.education = !display.education" />
+            <label class="form-check-label"> Học vấn </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.workExperience"
+                (change)="display.workExperience = !display.workExperience" />
+            <label class="form-check-label"> Kinh nghiệm làm việc </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.activities"
+                (change)="display.activities = !display.activities" />
+            <label class="form-check-label"> Hoạt động </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.awards"
+                (change)="display.awards = !display.awards" />
+            <label class="form-check-label"> Giải thưởng </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.certifications"
+                (change)="display.certifications = !display.certifications" />
+            <label class="form-check-label"> Chứng chỉ </label>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" (click)="toggleDisplayMode()">
+                Cập nhật
+            </button>
+            <!-- <div class="form-check">
+        <input class="form-check-input selector" type="radio" checked/>
+        <label class="form-check-label"> Chọn hết </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input selector" type="radio" />
+        <label class="form-check-label"> Bỏ chọn hết </label>
+      </div> -->
+        </div>
+    </div>
+</div>
+<!-- END OF DISPLAY MODE -->
+<!-- CONTROLLER FOR FORMARRAY -->
+<ng-template #controller let-i="index" let-form="form">
+    <div class="controller">
+        <button type="button" class="btn move-btn" (click)="reorder(form, -1, i)" [disabled]="i === 0">
+            <i class="fa fa-angle-up"></i>
+        </button>
+        <button type="button" class="btn move-btn" (click)="reorder(form, 1, i)">
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <button type="button" class="btn btn-success btn-add" (click)="onAddField(form)">
+            <i class="fa fa-plus"></i> Thêm
+        </button>
+        <button type="button" class="btn btn-danger btn-minus" (click)="onRemoveField(form, i)"
+            *ngIf="form.value.length > 1">
+            <i class="fa fa-minus"></i> Xóa
+        </button>
+    </div>
+</ng-template>
+<!-- CONTROLLER FOR FORMGROUP -->
+<ng-template #controller2 let-field="field">
+    <div class="controller2">
+        <button class="btn btn-sort me-2" (click)="toggleDisplayMode()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+        <button type="button" class="btn btn-danger btn-hide" (click)="hideField(field)">
+            <i class="fa fa-minus"></i> Ẩn mục
+        </button>
+    </div>
+</ng-template>

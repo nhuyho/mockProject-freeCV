@@ -1,0 +1,205 @@
+<div class="container rounded bg-white mt-5">
+    <div class="tag">
+        <h5 class="title">User Detail</h5>
+    </div>
+    <form
+        class="row"
+        *ngIf="editForm"
+        [formGroup]="editForm"
+        (ngSubmit)="onSubmit()"
+    >
+        <div class="col-md-4 border-right">
+            <div
+                class="
+                    d-flex
+                    flex-column
+                    align-items-center
+                    text-center
+                    p-3
+                    py-5
+                "
+            >
+                <img
+                    class=""
+                    src="{{ editForm.controls.avatar.value }}"
+                    width="200"
+                /><select
+                    class="form-control status form-select form-select-lg mb-3"
+                    formControlName="status"
+                    placeholder=""
+                    required
+                >
+                    <option value="None" selected>None</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Pass">Pass</option>
+                    <option value="Failed">Failed</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-3 py-5">
+                <div
+                    class="
+                        d-flex
+                        justify-content-between
+                        align-items-center
+                        mb-3
+                    "
+                >
+                    <h3 class="text-right">Edit Profile</h3>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Full Name*: </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Full Name*"
+                            formControlName="fullName"
+                        />
+                        <div
+                            class="form-text text-danger"
+                            *ngIf="
+                                (editForm.controls.fullName.touched &&
+                                    !editForm.controls.fullName.valid) ||
+                                editForm.controls.fullName.dirty
+                            "
+                        >
+                            <span
+                                *ngIf="
+                                    editForm.controls.fullName.errors?.required
+                                "
+                                >Full name is required</span
+                            >
+                            <span
+                                *ngIf="
+                                    editForm.controls.fullName.errors
+                                        ?.minlength &&
+                                    !editForm.controls.fullName.errors?.pattern
+                                "
+                                >Min length is 5 characters</span
+                            >
+                            <span
+                                *ngIf="
+                                    editForm.controls.fullName.errors?.pattern
+                                "
+                                >Only alphabetic characters</span
+                            >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Phone Number: </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value=""
+                            formControlName="phone"
+                            placeholder="Phone number*"
+                        />
+                        <div
+                            class="form-text text-danger"
+                            *ngIf="
+                                editForm.controls.phone.touched ||
+                                editForm.controls.phone.dirty
+                            "
+                        >
+                            <span
+                                *ngIf="
+                                    (editForm.controls.phone.errors
+                                        ?.minlength ||
+                                        editForm.controls.phone.errors
+                                            ?.max11Length) &&
+                                    !editForm.controls.phone.errors?.pattern
+                                "
+                                >10-11 characters</span
+                            >
+                            <span
+                                *ngIf="editForm.controls.phone.errors?.pattern"
+                                >Only numbers</span
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Birth: </label>
+                        <input
+                            type="date"
+                            class="form-control"
+                            placeholder="Birth"
+                            formControlName="dayOfBirth"
+                        />
+                    </div>
+                    <div class="col-md-6">
+                        <label>Note: </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            formControlName="note"
+                            placeholder="Note"
+                        />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label>Gender: </label>
+                        <select
+                            type="text"
+                            class="form-control form-select"
+                            placeholder=""
+                            formControlName="gender"
+                        >
+                            <option value="Unknown">Unknown</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Email*: </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            value=""
+                            placeholder="Email*"
+                            formControlName="email"
+                        />
+                        <div
+                            class="form-text text-danger col-12"
+                            *ngIf="
+                                (editForm.controls.email.touched &&
+                                    !editForm.controls.email.valid) ||
+                                editForm.controls.email.dirty
+                            "
+                        >
+                            <span
+                                *ngIf="editForm.controls.email.errors?.required"
+                                >Email is required</span
+                            >
+                            <span
+                                *ngIf="editForm.controls.email.errors?.pattern"
+                                >Invalid email</span
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-5 text-right">
+                    <button
+                        class="btn btn-success profile-button"
+                        type="submit"
+                        [disabled]="editForm.invalid"
+                    >
+                        Save Profile
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<button
+                        type="button"
+                        class="btn btn-danger"
+                        routerLink="/admin/users"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

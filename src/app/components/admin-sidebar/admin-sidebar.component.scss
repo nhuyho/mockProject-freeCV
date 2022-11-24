@@ -1,0 +1,123 @@
+@import "../../../scss/_variables.scss";
+
+.sidebar__admin {
+    background-color: #fff;
+    width: 100%;
+    font-weight: 600;
+    height: 100%;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    .sidebar-wrapper {
+        padding-top: 20px;
+        position: relative;
+        height: calc(100vh - 75px);
+        overflow: auto;
+        z-index: 4;
+
+        .nav {
+            margin-top: 20px;
+            display: block;
+            list-style: none;
+            padding-left: 10px;
+
+            .caret {
+                top: 14px;
+                position: absolute;
+                right: 10px;
+            }
+
+            li {
+                a {
+                    margin: 10px 15px 0;
+                    border-radius: 5px;
+                    color: $orange-bg;
+                    display: block;
+                    text-decoration: none;
+                    position: relative;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    font-size: $font-size-mini;
+                    padding: 10px 8px;
+                    line-height: $line-height-nav-link;
+
+                    i {
+                        color: $orange-bg;
+                    }
+                }
+
+                &:hover:not(.active) {
+                    a {
+                        background-color: $opacity-1;
+
+                        i {
+                            color: $orange-bg;
+                            font-size: 25px;
+                        }
+                    }
+                }
+
+                &.active a {
+                    background-color: $orange-bg;
+                    box-shadow: $box-shadow;
+                    color: $white-color;
+
+                    i {
+                        color: $white-color;
+                    }
+                }
+            }
+
+            p {
+                margin: 0;
+                line-height: 30px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;
+            }
+
+            i {
+                font-size: 20px;
+                float: left;
+                margin-right: 12px;
+                line-height: 30px;
+                width: 34px;
+                text-align: center;
+                color: $opacity-5;
+                position: relative;
+            }
+        }
+
+        .logout-btn {
+            background: linear-gradient(0deg,
+                    rgba(255, 151, 0, 1) 0%,
+                    rgba(251, 75, 2, 1) 100%);
+            line-height: 35px;
+            padding: 7px 5px 10px 10px;
+            border: none;
+            font-size: 15px;
+            color: #fff;
+            border-radius: 5px;
+            position: absolute;
+            width: 9rem;
+            display: block;
+            text-decoration: none;
+            margin-left: 20%;
+
+            i {
+                color: #fff;
+
+                &:hover {
+                    color: #fff !important;
+                }
+            }
+        }
+    }
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 78%;
+}

@@ -1,0 +1,67 @@
+.history-applied {
+    min-height: 70vh;
+    padding: 20px 0;
+    h1 {
+        font-size: 24px;
+    }
+    &__job {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+
+        background-color: #f0f0f0;
+        padding: 15px;
+        border-radius: 6px;
+    }
+    &__info {
+        display: flex;
+
+        img {
+            max-width: 150px;
+            width: 100%;
+            margin-right: 10px;
+        }
+
+        &-title {
+            display: flex;
+            flex-direction: column;
+
+            a {
+                text-decoration: none;
+
+                &:first-child {
+                    color: #999;
+                }
+                &:last-child {
+                    color: #00b14f;
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; 
+
+        span {
+            font-size: 13px;
+            margin-bottom: 10px;
+
+            i {
+                margin-right: 3px;
+                color: #00b14f;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #00b14f;
+            color: #fff;
+            padding: 2px 15px;
+            border-radius: 6px;
+        }
+    }
+}

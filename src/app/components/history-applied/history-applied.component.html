@@ -1,0 +1,18 @@
+<section class="history-applied">
+    <div class="container">
+        <h1>Công việc đã ứng tuyển</h1>
+        <div class="history-applied__job" *ngFor="let job of listJobApplied">
+            <div class="history-applied__info">
+                <img [src]="job.image" alt="">
+                <div class="history-applied__info-title">
+                    <a [routerLink]="['/job-detail', job.idJob]" >{{ job.title}}</a>
+                </div>
+            </div>
+            <div class="history-applied__actions">
+                <span><i class="far fa-clock"></i>{{ job.dateJobApply }}</span>
+                <a href="#">Xem CV</a>
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,672 @@
+<!-- MAIN CV FORM -->
+<div class="cvContainer container" *ngIf="!displayMode" [style.font-family]="editOptions.font"
+    [style.font-size]="editOptions.fontSize" [style.line-height]="editOptions.lineHeight"
+    [style.background-image]="editOptions.background">
+    <form #CV [formGroup]="cvForm">
+        <div class="cvTitle">
+            <p style="width: 100%; text-align: center" class="form-input" formControlName="cvTitle" contenteditable
+                [attr.data-placeholder]="'titleCv-placeholder' | translate"
+                pTooltip="{{ 'titleCv-msgError' | translate }}" tooltipPosition="top" tooltipStyleClass="error-tooltip"
+                [tooltipDisabled]="!cvForm.controls.cvTitle.errors?.required" [ngClass]="{
+                    'validator-error': cvForm.controls.cvTitle.errors?.required
+                }"></p>
+        </div>
+        <div class="row">
+            <div class="cvHeader col-4">
+                <div class="cvHeader__avatar">
+                    <img [src]="profileImage" style="cursor: pointer" (click)="imageEditorIsOn = true" />
+                    <div class="cvHeader__profile__name" formGroupName="basics">
+                        <p style="width: 100%; text-align: center" class="form-input" formControlName="name"
+                            contenteditable [attr.data-placeholder]="
+                                'profile.name-placeholder' | translate
+                            " pTooltip="{{ 'profile.name-msgError' | translate }}" tooltipPosition="top"
+                            tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                !basics.controls.name.errors?.required
+                            " [ngClass]="{
+                                'validator-error':
+                                    basics.controls.name.errors?.required
+                            }"></p>
+                    </div>
+                    <div class="cvHeader__profile__title pb-4">
+                        <p class="form-input" formControlName="title" contenteditable [attr.data-placeholder]="
+                                'position-placeholder' | translate
+                            "></p>
+                    </div>
+                </div>
+                <div class="cvHeader__content" [style.background-color]="editOptions.themeColor">
+                    <div class="cvBlock" formGroupName="basics">
+                        <label for=""> {{ "contact" | translate }}</label>
+                        <div id="contactInfo">
+                            <div class="
+                                    profileInfo
+                                    d-flex
+                                    align-items-center
+                                    pt-5
+                                ">
+                                <i class="fa fa-user"></i>
+                                <p class="form-input" formControlName="gender" contenteditable [attr.data-placeholder]="
+                                        'profile.gender-placeholder' | translate
+                                    "></p>
+                            </div>
+                            <div class="profileInfo d-flex align-items-center">
+                                <i class="fa fa-calendar-alt"></i>
+                                <p class="form-input" formControlName="dob" contenteditable [attr.data-placeholder]="
+                                        'profile.dob-placeholder' | translate
+                                    "></p>
+                            </div>
+                            <div class="profileInfo d-flex align-items-center">
+                                <i class="fa fa-envelope-square"></i>
+                                <p class="form-input" formControlName="email" contenteditable [attr.data-placeholder]="
+                                        'profile.email-placeholder' | translate
+                                    " pTooltip="{{
+                                        'profile.email-msgError' | translate
+                                    }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                        !basics.controls.email.errors?.required
+                                    " [ngClass]="{
+                                        'validator-error':
+                                            basics.controls.email.errors
+                                                ?.required
+                                    }"></p>
+                            </div>
+                            <div class="profileInfo d-flex align-items-center">
+                                <i class="fa fa-phone"></i>
+                                <p class="form-input" formControlName="phone" contenteditable [attr.data-placeholder]="
+                                        'profile.phone-placeholder' | translate
+                                    " pTooltip="{{
+                                        'profile.phone-msgError' | translate
+                                    }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                        !basics.controls.phone.errors?.required
+                                    " [ngClass]="{
+                                        'validator-error':
+                                            basics.controls.phone.errors
+                                                ?.required
+                                    }"></p>
+                            </div>
+                            <div class="profileInfo d-flex align-items-center">
+                                <i class="fa fa-link"></i>
+                                <p class="form-input" formControlName="link" contenteditable [attr.data-placeholder]="
+                                        'profile.link-placeholder' | translate
+                                    "></p>
+                            </div>
+                            <div class="profileInfo d-flex align-items-center">
+                                <i class="fa fa-home"></i>
+                                <p class="form-input" formControlName="address" contenteditable [attr.data-placeholder]="
+                                        'profile.address-placeholder'
+                                            | translate
+                                    " pTooltip="{{
+                                        'profile.address-msgError' | translate
+                                    }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                        !basics.controls.address.errors
+                                            ?.required
+                                    " [ngClass]="{
+                                        'validator-error':
+                                            basics.controls.address.errors
+                                                ?.required
+                                    }"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cvBlock" *ngIf="display.skills">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'skills' }
+                            "></ng-container>
+                        <div class="cvBlock__title">
+                            {{ "skills.title" | translate }}
+                        </div>
+                        <div formArrayName="skills" class="mt-3">
+                            <div class="cvInfoDetail pr-16" *ngFor="
+                                    let control of skills.controls;
+                                    let i = index
+                                " [formGroupName]="i">
+                                <ng-container *ngTemplateOutlet="
+                                        controller;
+                                        context: { index: i, form: skills }
+                                    "></ng-container>
+                                <div>
+                                    <p class="form-input input-bold" formControlName="name" contenteditable
+                                        [attr.data-placeholder]="
+                                            'skills.name-placeholder'
+                                                | translate
+                                        " pTooltip="{{
+                                            'skills.name-msgError' | translate
+                                        }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                            !control.get('name')?.errors
+                                                ?.required
+                                        " [ngClass]="{
+                                            'validator-error':
+                                                control.get('name')?.errors
+                                                    ?.required
+                                        }"></p>
+                                    <p-rating formControlName="level" [cancel]="false"></p-rating>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cvBlock" formArrayName="activities" *ngIf="display.activities">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'activities' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <div class="cvBlock__title">
+                                {{'activities.title' | translate}}
+                            </div>
+                        </div>
+                        <div class="cvBlock__educationTable cvInfoDetail pr-16" *ngFor="
+                                let control of activities.controls;
+                                let i = index
+                            " [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="
+                                    controller;
+                                    context: { index: i, form: activities }
+                                "></ng-container>
+
+                            <div class="d-flex align-items-center pt-4">
+                                <p class="form-input input-bold" contenteditable formControlName="organization"
+                                    [attr.data-placeholder]="'activities.organization-placeholder' | translate"
+                                    pTooltip="{{'activities.organization-msgError' | translate }}" tooltipPosition="top"
+                                    tooltipStyleClass="error-tooltip"
+                                    [tooltipDisabled]="!control.get('organization')?.errors?.required"
+                                    [ngClass]="{'validator-error': control.get('organization')?.errors?.required}"></p>
+                                <span>, </span>
+                                <p class="form-input" contenteditable formControlName="position"
+                                    [attr.data-placeholder]="'activities.position-placeholder' | translate"></p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <p class="form-input" contenteditable formControlName="startDate"
+                                    [attr.data-placeholder]="'activities.startDate-placeholder' | translate"></p>
+                                <span>-</span>
+                                <p class="form-input" contenteditable formControlName="endDate"
+                                    [attr.data-placeholder]="'activities.endDate-placeholder' | translate"></p>
+                            </div>
+                            <div>
+                                <p class="form-input" contenteditable formControlName="summary"
+                                    [attr.data-placeholder]="'activities.summary-placeholder' | translate"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cvBlock" *ngIf="display.interests">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'interests' }
+                            "></ng-container>
+                        <div class="cvBlock__title">
+                            {{ "interests.title" | translate }}
+                        </div>
+                        <p class="form-input" formControlName="interests" contenteditable [attr.data-placeholder]="
+                                'interests.content-placeholder' | translate
+                            " pTooltip="{{
+                                'interests.content-msgError' | translate
+                            }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                !cvForm.controls.interests.errors?.required
+                            " [ngClass]="{
+                                'validator-error':
+                                    cvForm.controls.interests.errors?.required
+                            }"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="cvMain col-8">
+                <div class="cvMain__top" #leftSide>
+                    <div class="cvBlock" *ngIf="display.objective">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'objective' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-user" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{ "objective.title" | translate }}
+                            </div>
+                        </div>
+                        <div class="cvBlock__objective pr-16">
+                            <p class="form-input" formControlName="objective" contenteditable
+                                data-placeholder="Mục tiêu nghề nghiệp: ngắn hạn, dài hạn"
+                                pTooltip="'Mục tiêu nghề nghiệp' không được để trống" tooltipPosition="top"
+                                tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                    !cvForm.controls.objective.errors?.required
+                                " [ngClass]="{
+                                    'validator-error':
+                                        cvForm.controls.objective.errors
+                                            ?.required
+                                }"></p>
+                        </div>
+                    </div>
+
+                    <div class="cvBlock" formArrayName="education" *ngIf="display.education">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'education' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-graduation-cap" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{ "education.title" | translate }}
+                            </div>
+                        </div>
+
+                        <div class="cvBlock__educationTable cvInfoDetail pr-16" *ngFor="
+                                let control of education.controls;
+                                let i = index
+                            " [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="
+                                    controller;
+                                    context: { index: i, form: education }
+                                "></ng-container>
+                            <div class="
+                                    cvBlock__educationTable__title
+                                    d-flex
+                                    align-items-center
+                                ">
+                                <i class="fa fa-angle-right mx-0"></i>
+                                <p class="form-input input-bold" contenteditable formControlName="institution"
+                                    [attr.data-placeholder]="
+                                        'education.school-placeholder'
+                                            | translate
+                                    " pTooltip="{{
+                                        'education.school-msgError' | translate
+                                    }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                        !control.get('institution')?.errors
+                                            ?.required
+                                    " [ngClass]="{
+                                        'validator-error':
+                                            control.get('institution')?.errors
+                                                ?.required
+                                    }"></p>
+                                <span>, </span>
+                                <p class="form-input" contenteditable formControlName="major" [attr.data-placeholder]="
+                                        'education.major-placeholder'
+                                            | translate
+                                    "></p>
+                            </div>
+                            <div class="
+                                    cvBlock__educationTable__educationTime
+                                    d-flex
+                                    align-items-center
+                                ">
+                                <p class="form-input" contenteditable formControlName="startDate"
+                                    [attr.data-placeholder]="
+                                        'education.startDate-placeholder'
+                                            | translate
+                                    "></p>
+                                <span>-</span>
+                                <p class="form-input" contenteditable formControlName="endDate" [attr.data-placeholder]="
+                                        'education.endDate-placeholder'
+                                            | translate
+                                    "></p>
+                            </div>
+                            <div class="cvBlock__educationTable__description">
+                                <p class="form-input" contenteditable formControlName="summary" [attr.data-placeholder]="
+                                        'education.summary-placeholder'
+                                            | translate
+                                    "></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cvBlock" formArrayName="workExperience" *ngIf="display.workExperience">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'workExperience' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-briefcase" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{ "workExperiences.title" | translate }}
+                            </div>
+                        </div>
+
+                        <div class="cvInfoDetail pr-16" *ngFor="let control of work.controls; let i = index"
+                            [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="
+                                    controller;
+                                    context: { index: i, form: work }
+                                ">
+                            </ng-container>
+                            <div class="d-flex align-items-center">
+                                <p class="form-input input-bold" contenteditable formControlName="name"
+                                    [attr.data-placeholder]="
+                                        'workExperiences.company-placeholder'
+                                            | translate
+                                    " pTooltip="{{
+                                        'workExperiences.company-msgError'
+                                            | translate
+                                    }}" tooltipPosition="top" tooltipStyleClass="error-tooltip" [tooltipDisabled]="
+                                        !control.get('name')?.errors?.required
+                                    " [ngClass]="{
+                                        'validator-error':
+                                            control.get('name')?.errors
+                                                ?.required
+                                    }"></p>
+                                <span>, </span>
+                                <p class="form-input" contenteditable formControlName="position"
+                                    [attr.data-placeholder]="
+                                        'workExperiences.position-placeholder'
+                                            | translate
+                                    "></p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <p class="form-input" contenteditable formControlName="startDate"
+                                    [attr.data-placeholder]="
+                                        'workExperiences.startDate-placeholder'
+                                            | translate
+                                    "></p>
+                                <span> - </span>
+                                <p class="form-input" contenteditable formControlName="endDate" [attr.data-placeholder]="
+                                        'workExperiences.endDate-placeholder'
+                                            | translate
+                                    "></p>
+                            </div>
+                            <div>
+                                <p class="form-input" style="width: 100%" formControlName="summary" contenteditable
+                                    [attr.data-placeholder]="
+                                        'workExperiences.summary-placeholder'
+                                            | translate
+                                    "></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cvBlock" formArrayName="certifications" *ngIf="display.certifications">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'certifications' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-certificate" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{ "certifications.title" | translate }}
+                            </div>
+                        </div>
+
+                        <div class="cvInfoDetail pr-16" *ngFor="
+                                let control of certifications.controls;
+                                let i = index
+                            " [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="
+                                    controller;
+                                    context: { index: i, form: certifications }
+                                "></ng-container>
+                            <div class="d-flex align-items-center">
+                                <p class="form-input input-bold" formControlName="date" contenteditable
+                                    [attr.data-placeholder]="'certifications.date-placeholder' | translate"></p>
+                                <p class="form-input" formControlName="summary" contenteditable
+                                    [attr.data-placeholder]="'certifications.summary-placeholder' | translate"
+                                    pTooltip="{{'certifications.summary-msgError' | translate }}" tooltipPosition="top"
+                                    tooltipStyleClass="error-tooltip"
+                                    [tooltipDisabled]="!control.get('summary')?.errors?.required"
+                                    [ngClass]="{'validator-error': control.get('summary')?.errors?.required}">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cvBlock" formArrayName="awards" *ngIf="display.awards">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'awards' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-bookmark" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{'awards.title' | translate}}
+                            </div>
+                        </div>
+                        <div class="cvInfoDetail pr-16" *ngFor="
+                                let control of awards.controls;
+                                let i = index
+                            " [formGroupName]="i">
+                            <ng-container *ngTemplateOutlet="
+                                    controller;
+                                    context: { index: i, form: awards }
+                                "></ng-container>
+                            <div class="d-flex align-items-center">
+                                <p class="form-input input-bold" formControlName="date" contenteditable
+                                    [attr.data-placeholder]="'awards.date-placeholder' | translate"></p>
+                                <p class="form-input" formControlName="summary" contenteditable
+                                    [attr.data-placeholder]="'awards.summary-placeholder' | translate"
+                                    pTooltip="{{'awards.summary-msgError' | translate}}" tooltipPosition="top"
+                                    tooltipStyleClass="error-tooltip"
+                                    [tooltipDisabled]="!control.get('summary')?.errors?.required"
+                                    [ngClass]="{'validator-error': control.get('summary')?.errors?.required}"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cvBlock" *ngIf="display.references">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'references' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-user-tie" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{'references.title' | translate}}
+                            </div>
+                        </div>
+                        <div formArrayName="references">
+                            <div class="cvInfoDetail pr-16" *ngFor="
+                                    let control of references.controls;
+                                    let i = index
+                                " [formGroupName]="i">
+                                <ng-container *ngTemplateOutlet="
+                                        controller;
+                                        context: { index: i, form: references }
+                                    "></ng-container>
+                                <div>
+                                    <p class="form-input input-bold" formControlName="name" contenteditable
+                                        [attr.data-placeholder]="'references.name-placeholder' | translate"
+                                        pTooltip="{{'references.name-msgError' | translate }}" tooltipPosition="top"
+                                        tooltipStyleClass="error-tooltip"
+                                        [tooltipDisabled]="!control.get('name')?.errors?.required"
+                                        [ngClass]="{'validator-error': control.get('name')?.errors?.required}"></p>
+                                    <p class="form-input" formControlName="reference" contenteditable
+                                        [attr.data-placeholder]="'references.content-placeholder' | translate"
+                                        pTooltip="{{'references.content-msgError' | translate }}" tooltipPosition="top"
+                                        tooltipStyleClass="error-tooltip"
+                                        [tooltipDisabled]="!control.get('reference')?.errors?.required"
+                                        [ngClass]="{'validator-error': control.get('reference')?.errors?.required}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cvBlock" *ngIf="display.additionalInformation">
+                        <ng-container *ngTemplateOutlet="
+                                controller2;
+                                context: { field: 'additionalInformation' }
+                            "></ng-container>
+                        <div class="d-flex">
+                            <i class="fa fa-info" [style.background-color]="
+                                    editOptions.themeColor
+                                "></i>
+                            <div class="cvBlock__title">
+                                {{'additionalInformation.title' | translate}}
+                            </div>
+                        </div>
+
+                        <p class="form-input" formControlName="additionalInformation" contenteditable
+                            data-placeholder="Điền thêm thông tin khác (nếu có)"
+                            pTooltip="{{'additionalInformation.content-msgErro' | translate }}" tooltipPosition="top"
+                            tooltipStyleClass="error-tooltip"
+                            [tooltipDisabled]="!cvForm.controls.additionalInformation.errors?.required"
+                            [ngClass]="{'validator-error': cvForm.controls.additionalInformation.errors?.required}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- END OF MAIN CV FORM -->
+<!-- UPLOAD IMAGE -->
+<div id="uploadImg" style="display: block" *ngIf="imageEditorIsOn">
+    <div class="uploadContainer">
+        <h4>Chỉnh sửa ảnh đại diện</h4>
+        <div class="uploadMain">
+            <div class="editor-col-left">
+                <h5>Ảnh gốc</h5>
+                <div class="editorChooseImage" [class.show]="imageChangedEvent === ''">
+                    <span style="cursor: pointer" class="btn-choose-image" (click)="uploadImageInput.click()"><i
+                            class="fa fa-image"></i>
+                        <br />
+                        Click hoặc kéo thả ảnh để tải lên</span>
+                    <input #uploadImageInput type="file" style="display: none" (change)="fileChangeEvent($event)" />
+                </div>
+                <div class="imageEditor" [class.show]="imageChangedEvent !== ''">
+                    <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+                        [containWithinAspectRatio]="containWithinAspectRatio" [resizeToWidth]="160"
+                        [cropperMinWidth]="128" [onlyScaleDown]="true" [roundCropper]="false"
+                        [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'center'"
+                        [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)"></image-cropper>
+                </div>
+                <div class="tipCompress">
+                    Nếu ảnh của bạn có dung lượng trên 5MB, vui lòng
+                    <a href="https://compressor.io/" target="_blank" style="color: black">bấm vào đây</a>
+                    để giảm dung lượng ảnh
+                </div>
+            </div>
+            <div class="editor-col-right">
+                <h5>Ảnh hiển thị trên CV</h5>
+                <div class="imageEditorControls">
+                    <div class="img-edit-preview">
+                        <img style="width: 100%" [src]="croppedImage" />
+                    </div>
+                    <div class="edit-img-btns mt-2">
+                        <button class="btn btn-change-image" (click)="uploadImageInput.click()">
+                            Đổi ảnh
+                        </button>
+                        <button class="btn btn-remove-image" (click)="onDeleteProfileImage()">
+                            Xóa ảnh
+                        </button>
+                    </div>
+                    <div class="mt-2">
+                        <button class="btn btn-save-image" (click)="onDoneEditImage()">
+                            Xong
+                        </button>
+                    </div>
+                    <div>
+                        <span class="btn-close-image-editor" style="cursor: pointer"
+                            (click)="imageEditorIsOn = false">Đóng lại (Không lưu)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF UPLOAD IMAGE -->
+<!-- DISPLAY MODE -->
+<div *ngIf="displayMode" style="width: 450px; margin: auto; margin-top: 2rem">
+    <div id="sort" style="width: 80%; margin: auto">
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="objective" [checked]="display.objective"
+                (change)="display.objective = !display.objective" />
+            <label class="form-check-label"> Mục tiêu nghề nghiệp </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.skills"
+                (change)="display.skills = !display.skills" />
+            <label class="form-check-label"> Các kỹ năng </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.interests"
+                (change)="display.interests = !display.interests" />
+            <label class="form-check-label"> Sở thích </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.references"
+                (change)="display.references = !display.references" />
+            <label class="form-check-label"> Người tham chiếu </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.additionalInformation"
+                (change)="
+                    display.additionalInformation =
+                        !display.additionalInformation
+                " />
+            <label class="form-check-label"> Thông tin thêm </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.education"
+                (change)="display.education = !display.education" />
+            <label class="form-check-label"> Học vấn </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.workExperience"
+                (change)="display.workExperience = !display.workExperience" />
+            <label class="form-check-label"> Kinh nghiệm làm việc </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.activities"
+                (change)="display.activities = !display.activities" />
+            <label class="form-check-label"> Hoạt động </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.awards"
+                (change)="display.awards = !display.awards" />
+            <label class="form-check-label"> Giải thưởng </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input selector" type="checkbox" value="" [checked]="display.certifications"
+                (change)="display.certifications = !display.certifications" />
+            <label class="form-check-label"> Chứng chỉ </label>
+        </div>
+        <div>
+            <button type="button" class="btn btn-success" (click)="toggleDisplayMode()">
+                Cập nhật
+            </button>
+            <!-- <div class="form-check">
+        <input class="form-check-input selector" type="radio" checked/>
+        <label class="form-check-label"> Chọn hết </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input selector" type="radio" />
+        <label class="form-check-label"> Bỏ chọn hết </label>
+      </div> -->
+        </div>
+    </div>
+</div>
+<!-- END OF DISPLAY MODE -->
+<!-- CONTROLLER FOR FORMARRAY -->
+<ng-template #controller let-i="index" let-form="form">
+    <div class="controller">
+        <button type="button" class="btn move-btn" (click)="reorder(form, -1, i)" [disabled]="i === 0">
+            <i class="fa fa-angle-up"></i>
+        </button>
+        <button type="button" class="btn move-btn" (click)="reorder(form, 1, i)">
+            <i class="fa fa-angle-down"></i>
+        </button>
+        <button type="button" class="btn btn-success btn-add" (click)="onAddField(form)">
+            <i class="fa fa-plus"></i> Thêm
+        </button>
+        <button type="button" class="btn btn-danger btn-minus" (click)="onRemoveField(form, i)"
+            *ngIf="form.value.length > 1">
+            <i class="fa fa-minus"></i> Xóa
+        </button>
+    </div>
+</ng-template>
+<!-- CONTROLLER FOR FORMGROUP -->
+<ng-template #controller2 let-field="field">
+    <div class="controller2">
+        <button class="btn btn-sort me-2" (click)="toggleDisplayMode()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </button>
+        <button type="button" class="btn btn-danger btn-hide" (click)="hideField(field)">
+            <i class="fa fa-minus"></i> Ẩn mục
+        </button>
+    </div>
+</ng-template>

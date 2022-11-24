@@ -1,0 +1,109 @@
+.register-form {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    &__left {
+        padding: 20px;
+        background-color: #fff;
+        h1,
+        h3 {
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #666;
+        }
+    }
+
+    &__right {
+        @extend .register-form__left;
+        height: 100%;
+        h3 {
+            text-align: left;
+        }
+
+        p {
+            font-size: 14px;
+            color: #666;
+        }
+    }
+    &__form {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+
+        h3 {
+            color: #666;
+            margin: 12px 0;
+            font-size: 14px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+    }
+    &__login {
+        text-align: center;
+        color: #999;
+        margin-top: 10px;
+
+        a {
+            text-decoration: none;
+            color: #00b14f;
+            font-style: italic;
+        }
+    }
+    &__error {
+        margin-top: 5px;
+        color: #d90429;
+        font-weight: bold;
+    }
+    &__social {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        border-bottom: 1px solid #eee;
+
+        p {
+            color: #999;
+            font-size: 13.3px;
+        }
+    }
+    &__btn {
+        padding: 10px 20px;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 3px;
+        width: 100%;
+        font-size: 14px;
+        margin-bottom: 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+
+        &--fb {
+            background-color: #3b5998;
+            border: 1px solid #3b5998;
+        }
+        &--google {
+            background-color: #db4a39;
+            border: 1px solid #db4a39;
+        }
+        &--login {
+            background-color: #00b14f;
+            border: 1px solid #00b14f;
+        }
+    }
+}
+
+.spinner-border {
+    height: 17px !important;
+    width: 17px !important;
+}

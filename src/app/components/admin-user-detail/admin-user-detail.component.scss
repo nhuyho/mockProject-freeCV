@@ -1,0 +1,22 @@
+
+body {
+    background: #35e91e;
+}
+.status {
+    text-align: center;
+    width: 60%;
+    margin-top: 1rem;
+    font-size: 2rem;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: #35e91e;
+}
+
+.back:hover {
+    color: #10b826;
+    cursor: pointer;
+}
+label{
+    font-weight: bold;
+}

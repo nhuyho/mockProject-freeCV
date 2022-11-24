@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="list-cv__wrap-title">
+                <h3>Danh sách mẫu CV xin việc tiếng Anh / Việt</h3>
+                <p class="list-cv__wrap-title--label">
+                    Các mẫu CV đuợc thiết kế theo chuẩn, theo các ngành nghề.
+                    Phù hợp với sinh viên và người đi làm.
+                </p>
+            </div>
+            <div class="container">
+                <!-- List cv template -->
+                <div class="row">
+                    <!-- cv template item -->
+                    <app-cv-item *ngFor="let item of listCvData" [itemCvData]="item"
+                        class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-4 list-cv__template-cv"></app-cv-item>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

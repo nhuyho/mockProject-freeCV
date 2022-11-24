@@ -1,0 +1,42 @@
+<div class="main">
+    <div class="container">
+        <div *ngIf="userCVList.length == 0; then showDefault else showCvList"></div>
+        <ng-template #showDefault>
+            <div class="main__default">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                        <div class="main__default-content">
+                            <h2>Tạo CV đầu tiên với FsoftCV</h2>
+                            <p>FPT Software Academy chính là nơi khởi đầu cho những thành công của các kỹ sư CNTT
+                                trong tương lai, cung cấp và đào tạo nguồn nhân lực IT chất lượng cao cho các 
+                                dự án lớn trên toàn cầu.
+                            </p>
+                            <p>FPT Software Academy tự hào là bệ phóng sự nghiệp vững chắc cho 5000
+                                kỹ sư công nghệ thông tin trẻ mỗi năm.
+                            </p>
+                            <button class="btn btn-success" routerLink='/cv-list'>
+                                Tạo CV đầu tiên
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="main__default-logo">
+                            <img src="https://www.topcv.vn/v3/images/create-first-cv-logo.png" alt="image write cv">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #showCvList>
+            <div class="main__top d-flex justify-content-between align-items-center">
+                <h2 class="title">
+                    DANH SÁCH CV
+                </h2>
+                <button class="btn btn-success" routerLink='/cv-list'><i class="fa fa-plus-circle"></i> Tạo mới</button>
+            </div>
+            <div class="cv__item" *ngFor="let cv of userCVList">
+                <app-user-cv-item [cvItem]="cv"></app-user-cv-item>
+            </div>
+        </ng-template>
+    </div>
+</div>

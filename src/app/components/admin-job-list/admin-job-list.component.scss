@@ -1,0 +1,256 @@
+@import "../../../scss/_variables.scss";
+
+:host::ng-deep {
+    .job__filter {
+        display: flex;
+        justify-content: flex-start;
+        max-width: 100%;
+        margin-left: 1%;
+
+        .p-dropdown {
+            width: 16.5rem;
+            font-weight: normal;
+        }
+
+        .form-search {
+            position: relative;
+            width: 20rem;
+
+            i {
+                position: absolute;
+                top: 12px;
+                right: 5px;
+            }
+        }
+
+        button {
+            height: 41px;
+        }
+    }
+
+    .job-description {
+        color: #666;
+        font-size: 14px;
+        margin: 0;
+        padding: 20px 10px 10px;
+        text-align: start;
+    }
+
+    .job-list-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .job-grid-item {
+        border: 1px solid #dee2e6;
+        box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+        transition: all 3s;
+        margin: 10px;
+        border-radius: 5px;
+
+        .job-grid-item-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            img {
+                width: 100%;
+                height: 184px;
+                border-radius: 5px 5px 0 0;
+                position: relative;
+            }
+
+            &:hover .job__item-overlay {
+                opacity: 1;
+            }
+
+            .job__item-overlay {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: absolute;
+                background-color: rgba(0, 0, 0, 0.7);
+                top: 0;
+                left: 0;
+                height: 54%;
+                width: 100%;
+                opacity: 0;
+                -moz-transition: all 0.2s ease;
+                -webkit-transition: all 0.2s ease;
+                transition: all 0.2s ease;
+                border-radius: 5px;
+
+                .btn-edit {
+                    display: inline-block;
+                    color: $text-white-color;
+                    text-align: center;
+                    font-size: 15px;
+                    text-decoration: none;
+                    font-weight: 700;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    color: $text-white-color;
+                    border-radius: 10px;
+                    width: 50%;
+                    background-color: $heading-color;
+                    border: none;
+
+                    .btn-preview {
+                        margin-bottom: 16px;
+                        background-color: transparent;
+                        border: 1px solid $text-white-color;
+                    }
+                }
+            }
+        }
+
+        .job-grid-item-content {
+            border: 1px solid #dee2e6;
+            .job-name {
+                a {
+                    margin-top: 15px;
+                    font-size: 20px;
+                    font-weight: 500;
+                    height: 40px;
+                    text-align: start;
+                    padding: 10px;
+                    margin-bottom: 10px;
+                    text-decoration: none;
+                    color: #000;
+                    display: block;
+                }
+            }
+            .job-grid-item-bottom {
+                .job-date {
+                    border-top: 1px solid #ecebeb;
+                    margin: 0;
+                    padding: 10px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .p-calendar .p-inputtext {
+        flex: 1 1 auto;
+        width: 280px;
+    }
+
+    .p-calendar-w-btn .p-inputtext {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .p-calendar-w-btn .p-datepicker-trigger {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    /* Datepicker */
+    .p-calendar .p-datepicker {
+        min-width: 100%;
+        width: 200px;
+    }
+
+    .p-datepicker {
+        width: 70%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .p-datepicker-prev,
+    .p-datepicker-next {
+        cursor: pointer;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* DatePicker Table */
+    .p-datepicker table {
+        width: 30%;
+        border-collapse: collapse;
+        opacity: 1;
+
+        td {
+            padding: 2px;
+        }
+    }
+
+    .p-datepicker td span {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Month Picker */
+    .p-monthpicker-month {
+        width: 20%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /*  Button Bar */
+    .p-datepicker-buttonbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.job__update {
+    height: 100%;
+
+    .date {
+        height: 40rem;
+    }
+}
+
+h5 {
+    margin-top: 100px;
+    margin-left: 50px;
+}
+
+.p-field {
+    margin-top: 100px;
+
+    p-calendar {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .card-item {
+        width: 21rem;
+        height: auto;
+        margin: 0 20px;
+    }
+
+    :host::ng-deep {
+        .job__filter {
+            display: flex;
+            margin-left: 2rem;
+            justify-content: space-between;
+            max-width: 100%;
+
+            .p-dropdown {
+                width: 20rem;
+                font-weight: normal;
+            }
+        }
+    }
+}

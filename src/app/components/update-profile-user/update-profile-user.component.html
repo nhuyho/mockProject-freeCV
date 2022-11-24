@@ -1,0 +1,97 @@
+<section class="profile-user">
+    <div class="container"> 
+        <h1> Cập nhật thông tin</h1>
+        <form [formGroup]="updateProfile" *ngIf="updateProfile" (ngSubmit)="handleUpdateProfileUser(updateProfile.value)">
+            <div class="profile-user__avatar">
+                <div class="profile-user__avatar-img" (click)="avatarInput.click()">
+                    <img [src]="this.updateProfile.value.avatar" alt="">
+                    <img [src]="iconCamera" alt="">
+                    <input type="file" accept=".png, .jpg, .jpeg" #avatarInput (change)="updateAvatar($event)"  />
+                </div>
+                <h3>{{this.updateProfile.value.fullName}}</h3>
+                <p>{{this.updateProfile.value.email}}</p>
+            </div>
+            <div class="profile-user__info row"> 
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Full name <span class="text-danger">*</span>:</label>
+                        <input type="text" class="form-control" placeholder="Enter full name" formControlName="fullName"> 
+                        <div class="profile-user__error" *ngIf="submitted && updateProfile.get('fullName')?.errors">
+                            <span *ngIf="
+                                    updateProfile.get('fullName')?.errors
+                                        ?.required
+                                ">Please insert a valid name.</span>
+                                <span *ngIf="
+                                    updateProfile.get('fullName')?.errors
+                                        ?.pattern
+                                ">Invalid Full Name.</span>
+                        </div>
+                      </div>
+                    <div class="form-group">
+                          <label>Email address <span class="text-danger">*</span>:</label>
+                          <input type="text" class="form-control" placeholder="Enter email" formControlName="email"> 
+                          <div class="profile-user__error" *ngIf="
+                            submitted && updateProfile.get('email')?.errors
+                                ">
+                                <span *ngIf="
+                                        updateProfile.get('email')?.errors
+                                            ?.required
+                                    ">Please insert a valid email.</span>
+                                <span *ngIf="
+                                        updateProfile.get('email')?.errors
+                                            ?.pattern
+                                    ">Invalid email address.</span>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <label>Phone:</label>
+                        <input type="text" class="form-control" placeholder="Enter phone" formControlName="phone"> 
+                        <div class="profile-user__error" *ngIf="
+                            submitted && updateProfile.get('phone')?.errors
+                                "> 
+                                <span *ngIf="
+                                        updateProfile.get('phone')?.errors
+                                            ?.pattern
+                                    ">Invalid phone.</span>
+                            </div>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Birthday:</label>
+                        <input type="date" class="form-control"  placeholder="Birthday" formControlName="dayOfBirth">
+                      </div>
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <div class=""> 
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="Unknown" formControlName="gender">
+                                <label class="form-check-label" for="inlineRadio1">Unknown</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="Male" formControlName="gender">
+                                <label class="form-check-label" for="inlineRadio2">Male</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="inlineRadio3" value="Female" formControlName="gender">
+                                <label class="form-check-label" for="inlineRadio3">Female</label>
+                              </div>
+                        </div>
+                      </div> 
+                </div> 
+            </div>
+            <div class="text-right"> 
+                <button type="submit" class="profile-user__btn" [disabled]="loading">
+                    <span *ngIf="!loading; else isLoading">
+                        Cập nhật
+                    </span>
+                    <ng-template #isLoading>
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </ng-template>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

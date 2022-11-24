@@ -1,0 +1,199 @@
+<div id="cvo-toolbar" class="">
+    <div class="toolbar-global-controls">
+        <div class="container">
+            <div class="item" id="toolbar-color">
+                <div class="language">
+                    <span (click)="changeLang('en')">
+                        <strong *ngIf="isActiveEn"></strong>
+                        <img src="https://www.topcv.vn/images/en.png" alt="image en">
+                    </span>
+                    <span (click)="changeLang('vi')">
+                        <strong *ngIf="isActiveVi"></strong>
+                        <img src="https://www.topcv.vn/images/vi.png" alt="image vi">
+                    </span>
+                </div>
+                <div class="options">
+                    <span
+                        *ngFor="let color of colorCollection"
+                        class="color"
+                        [style.background-color]="color.color"
+                        [ngClass]="editOptions.themeColor === color.color ? 'active' : ''"
+                        (click)="changeColor(color.color, color.backgroundUrl, color.secondTextColor)"
+                    >
+                        <i class="fa fa-check"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="item" id="toolbar-font">
+                <div class="title">Font chữ</div>
+                <div class="options">
+                    <select name="font" id="font-selector" style="width: 120px" tabindex="-1"
+                        class="select2-hidden-accessible" aria-hidden="true" (change)="changeFont($event)">
+                        <option value="Roboto" [selected]="editOptions.font === 'Roboto'">Roboto</option>
+                        <option value="Maitree" [selected]="editOptions.font === 'Maitree'">Maitree</option>
+                        <option value="Open Sans" [selected]="editOptions.font === 'Open Sans'">Open Sans</option>
+                        <option value="Prompt" [selected]="editOptions.font === 'Prompt'">Prompt</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Cỡ chữ</div>
+                <div class="options">
+                    <span
+                        class="fontsize"
+                        [ngClass]="editOptions.fontSize === 'small' ? 'active' : ''"
+                        (click)="changeFontSize('small')"
+                    >
+                        <i class="fa fa-font"></i>
+                    </span>
+                    <span
+                        class="fontsize"
+                        [ngClass]="editOptions.fontSize === 'medium' ? 'active' : ''"
+                        (click)="changeFontSize('medium')"
+                    >
+                        <i class="fa fa-font"></i>
+                    </span>
+                    <span
+                        class="fontsize"
+                        [ngClass]="editOptions.fontSize === 'large' ? 'active' : ''"
+                        (click)="changeFontSize('large')"
+                    >
+                        <i class="fa fa-font"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="item">
+                <div class="title">Cách dòng</div>
+                <div class="options">
+                    <span
+                        class="line-height"
+                        [ngClass]="editOptions.lineHeight === '1' ? 'active' : ''"
+                        (click)="changeLineHeight('1')"
+                    >
+                        <i class="fa fa-arrows-alt-v"></i>
+                    </span>
+                    <span
+                        class="line-height"
+                        [ngClass]="editOptions.lineHeight === '1.2' ? 'active' : ''"
+                        (click)="changeLineHeight('1.2')"
+                    >
+                        <i class="fa fa-arrows-alt-v"></i>
+                    </span>
+                    <span
+                        class="line-height"
+                        [ngClass]="editOptions.lineHeight === '1.5' ? 'active' : ''"
+                        (click)="changeLineHeight('1.5')"
+                    >
+                        <i class="fa fa-arrows-alt-v"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="item button" id="btn-edit-layout" (click)="toggleDisplayMode()">
+                <div class="title">Thêm mục</div>
+                <i class="fa fa-plus-circle"></i>
+            </div>
+            <div class="item button" id="btn-change-template" (click)="toggleTemplateModel()">
+                <div class="title">Đổi mẫu CV</div>
+                <i class="fa fa-file"></i>
+            </div>
+            <button class="item button btn-topcv-primary" id="btn-save-cv" (click)="submitForm()">
+                <div class="title">Lưu CV</div>
+                <i class="fa fa-save"></i>
+            </button>
+        </div>
+    </div>
+    <div id="cv-form-text-editor" style="display: block">
+        <div class="container">
+            <div class="editor-controls-wraper">
+                <div class="editor-controls disabled">
+                    <div class="editor-control-group">
+                        <button
+                            class="editor-control control-bold"
+                            title="Chữ đậm"
+                            data-command="bold"
+                            (click)="exec('bold')"
+                        >
+                            <i class="fa fa-bold" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="editor-control control-italic"
+                            title="Chữ nghiêng"
+                            command="italic"
+                            (click)="exec('italic')"
+                        >
+                            <i class="fa fa-italic" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="editor-control control-underline"
+                            title="Chữ đậm"
+                            command="underline"
+                            (click)="exec('underline')"
+                        >
+                            <i class="fa fa-underline" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="editor-control-group">
+                        <button
+                            class="editor-control control-align-left"
+                            title="Căn trái"
+                            command="align-left"
+                            (click)="exec('justifyLeft')"
+                        >
+                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="editor-control control-align-right"
+                            title="Căn phải"
+                            command="align-right"
+                            (click)="exec('justifyRight')"
+                        >
+                            <i class="fa fa-align-right" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="editor-control control-align-center"
+                            title="Căn giữa"
+                            command="align-center"
+                            (click)="exec('justifyCenter')"
+                        >
+                            <i class="fa fa-align-center" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="editor-control control-align-justify"
+                            title="Căn đều hai lề"
+                            command="align-justify"
+                            (click)="exec('justifyFull')"
+                        >
+                            <i class="fa fa-align-justify" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="editor-control-group">
+                        <button
+                            class="editor-control control-undo"
+                            title="Hoàn tác"
+                            command="undo"
+                            (click)="exec('undo')"
+                        >
+                            <i class="fa fa-undo" aria-hidden="true"></i>
+                        </button>
+                        <button
+                            class="editor-control control-redo"
+                            title="Làm lại"
+                            command="redo"
+                            (click)="exec('redo')"
+                        >
+                            <i class="fa fa-redo"></i>
+                        </button>
+                        <button
+                            class="editor-control control-remove-format"
+                            title="Xoá hết định dạng"
+                            command="remove-format"
+                            (click)="exec('removeFormat')"
+                        >
+                            <i class="fa fa-eraser" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

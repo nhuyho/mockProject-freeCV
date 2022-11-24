@@ -1,0 +1,18 @@
+<div class="cv__content-carousel">
+<div class="container">
+    <div class="title">
+        <h4>
+            MỘT SỐ MẪU CV PHỔ BIẾN
+            <a routerLink="/cv-list">Xem tất cả <i class="fa fa-arrow-right"></i></a>
+        </h4>
+    </div>
+    
+    <owl-carousel-o [options]="customOptions">
+        <ng-container *ngFor="let item of listCvData">
+            <ng-template carouselSlide>
+                <app-cv-item [itemCvData]="item"></app-cv-item>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</div>
+</div>

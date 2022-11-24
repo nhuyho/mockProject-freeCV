@@ -1,0 +1,192 @@
+<div class="content__table">
+    <h3 class="content__table--title mb-5 mt-4">User List</h3>
+    <p-table #dt2 [value]="listUserData" dataKey="id" [loading]="loading" editMode="row" responsiveLayout="scroll" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} user(s)"
+        [globalFilterFields]="['fullName']">
+        <ng-template pTemplate="caption">
+            <div class="row justify-content-between align-items-center">
+                <div class="col col-4">
+                    <span class="p-input-icon-left p-ml-auto mt-4" style="width: 100%">
+                        <i class="pi pi-search"></i>
+                        <input
+                            pInputText
+                            type="text"
+                            (input)="
+                                dt2.filterGlobal(
+                                    getEventValue($event),
+                                    'contains'
+                                )
+                            "
+                            placeholder="Enter full name ...."
+                            style="width: 100%"
+                        />
+                    </span>
+                </div>
+                <div class="col col-5">
+                    <div class="row">
+                        <div class="col">
+                            <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <label>Status</label>
+                                    <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Tất cả" [showClear]="true">
+                                        <ng-template let-option pTemplate="item">
+                                            <span>{{ option.label }}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
+                        </div>
+                        <div class="col">
+                            <p-columnFilter field="gender" matchMode="equals" [showMenu]="false">
+                                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                    <label>Gender</label>
+                                    <p-dropdown [ngModel]="value" [options]="genderes" (onChange)="filter($event.value)" placeholder="Tất cả" [showClear]="true">
+                                        <ng-template let-option pTemplate="item">
+                                            <span>{{ option.label }}</span>
+                                        </ng-template>
+                                    </p-dropdown>
+                                </ng-template>
+                            </p-columnFilter>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <!-- <ng-template pTemplate="header">
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Staus</th>
+                <th>Note</th>
+                <th style="width:8rem"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="user">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            {{ri + 1}}
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ri + 1}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="user.fullName" maxlength="50"
+                                [ngClass]="{'mt-4': isEmpty(user.fullName) || checkLengthString(user.fullName) || !isValidFullName(user.fullName)}">
+                            <span *ngIf="isEmpty(user.fullName)" class="error">FullName required</span>
+                            <span *ngIf="!isEmpty(user.fullName) && checkLengthString(user.fullName)" class="error">
+                                FullName 5 - 50 letters</span>
+                            <span *ngIf="!isEmpty(user.fullName) && !isValidFullName(user.fullName)"
+                                class="error">FullName Invalid</span>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{user.fullName}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="genderes" [(ngModel)]="user.gender" [style]="{'width':'100%'}">
+                            </p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{user.gender}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input" class="calendar">
+                            <p-calendar [(ngModel)]="user.dayOfBirth">
+                            </p-calendar>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{user.dayOfBirth | date:'MM/dd/yyyy'}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="user.email"
+                                [ngClass]="{'mt-4': isEmpty(user.email) || !isValidEmail(user.email)}">
+                            <span *ngIf="isEmpty(user.email)" class="error">Email required</span>
+                            <span *ngIf="!isEmpty(user.email) && !isValidEmail(user.email)" class="error">
+                                Email Invalid</span>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{user.email}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="user.phone"
+                                [ngClass]="{'mt-4': !isValidPhone(user.phone)}">
+                            <span *ngIf="!isValidPhone(user.phone)" class="error">
+                                Phone Invalid</span>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{user.phone}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-dropdown [options]="statuses" [(ngModel)]="user.status" [style]="{'width':'100%'}">
+                            </p-dropdown>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <p class="text-center"
+                                [ngClass]="{'tag__pending': user.status === 'Pending', 'tag__pass': user.status === 'Pass', 'tag__failed': user.status === 'Failed'}">
+                                {{user.status}}
+                            </p>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <textarea pInputTextarea [rows]="5" [cols]="30" maxlength="1000"
+                                [(ngModel)]="user.note"></textarea>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <p class="note text-left"> {{ user.note }}</p>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td style="text-align:center">
+                    <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                        (click)="onRowEditInit(user)" class="p-button-rounded p-button-text"></button>
+                    <a *ngIf="!editing" [routerLink]="['/admin/users/detail', user.id]">
+                        <i class="far fa-eye icon__view"></i>
+                    </a>
+                    <div class="d-flex">
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                            (click)="onRowEditSave(user)" [disabled]="isDisabled(user)"
+                            class="p-button-rounded p-button-text p-button-success p-mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                            (click)="onRowEditCancel(user, ri)"
+                            class="p-button-rounded p-button-text p-button-danger"></button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="9" style="text-align: center;">No users found.</td>
+            </tr>
+        </ng-template> -->
+    </p-table>
+</div>

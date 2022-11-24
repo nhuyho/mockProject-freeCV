@@ -1,0 +1,77 @@
+{
+    "cvList": [
+        {
+            "id": "6a729dc2-3bbc-4f23-a4e6-ce448721740e",
+            "isFirtClass": false,
+            "status": "Mới",
+            "thumbnail": "https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/outstanding_11.png?v=1.0.3",
+            "labels": ["Màu sắc","Chuyên nghiệp"],
+            "title": "Mẫu CV Outstanding 11",
+            "colors": [
+                "#66aebe",
+                "#00b04f",
+                "#67a79e",
+                "#e16f6f",
+                "#f48534"
+            ]
+        },
+        {
+            "id": "a6db47cc-1558-40f8-a194-f0da6e821eea",
+            "isFirtClass": false,
+            "status": "Mới",
+            "thumbnail": "https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/outstanding_10.png?v=1.0.3",
+            "labels": ["Màu sắc","Chuyên nghiệp"],
+            "title": "Mẫu CV Outstanding 10",
+            "colors": [
+                "#66aebe",
+                "#00b04f",
+                "#67a79e",
+                "#e16f6f",
+                "#f48534"
+            ]
+        },
+        {
+            "id": "e93916c2-bdfa-4a45-abea-b109057c1d3b",
+            "isFirtClass": true,
+            "status": "Cao cấp",
+            "thumbnail": "https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/outstanding_9.png?v=1.0.3",
+            "labels": ["Chuyên nghiệp","Đơn giản"],
+            "title": "Mẫu CV Outstanding 09",
+            "colors": [
+                "#8fd6e1",
+                "#eab2a7",
+                "#67a79e",
+                "#e16f6f",
+                "#f48534"
+            ]
+        },
+        {
+            "id": "9559b490-8e69-4864-a816-f596e591a219",
+            "isFirtClass": false,
+            "status": "Mới",
+            "thumbnail": "https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/outstanding_8.png?v=1.0.3",
+            "labels": ["Thanh lịch","Sáng tạo"],
+            "title": "Mẫu CV Outstanding 08",
+            "colors": [
+                "#00b14f",
+                "#ff7f29",
+                "#0063ff",
+                "#ff9292",
+                "#e84545",
+                "#51c2d5"
+            ]
+        },
+        {
+            "id": "2817fbf5-a027-4d9e-b6bd-71bb60dbb00c",
+            "isFirtClass": false,
+            "status": "Mới",
+            "thumbnail": "https://www.topcv.vn/images/cv/screenshots/thumbs/cv-template-thumbnails-v1.2/outstanding_7.png?v=1.0.3",
+            "labels": ["Thương hiệu","Công nghệ"],
+            "title": "Mẫu CV Outstanding 07",
+            "colors": [
+                "#333333",
+                "#999999"
+            ]
+        }
+    ]
+}

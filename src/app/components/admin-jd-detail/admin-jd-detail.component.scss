@@ -1,0 +1,95 @@
+@import "../../../scss/_variables.scss";
+
+.m-custom-form-group {
+    margin-right: 20px;
+}
+
+.flex-col {
+    flex-direction: column;
+    align-items: flex-start !important;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-custom-size {
+    width: 40%;
+}
+
+.error-message {
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+    margin-top: 5px;
+}
+
+label {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #4b4b4b;
+}
+
+.upload-file {
+    width: 97.5% !important;
+}
+
+input {
+    width: 98%;
+}
+
+.angular-editor-textarea {
+    overflow-y: scroll;
+}
+
+.jd-detail {
+    &__header {
+        margin: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &--block {
+            .btn-font {
+                font-size: 1rem;
+                font-weight: 500;
+            }
+            &:last-child {
+                .btn {
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+    &__form {
+        color: $text-color;
+        &--title-field {
+            height: 90px;
+            select {
+                width: 96.5%;
+            }
+        }
+        &--info-image {
+            margin-left: 10px;
+            .message-thumbnail {
+                color: $label-color;
+                font-style: italic;
+            }
+        }
+        &--group-item {
+            display: grid;
+            grid-template-columns: 50% 30% 20%;
+            height: 90px;
+        }
+        &--submit {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &--editor {
+            margin-top: 1.5rem;
+        }
+    }
+}
